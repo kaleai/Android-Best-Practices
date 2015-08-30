@@ -1,7 +1,9 @@
 # Log最佳实践
 
 使用更好的log来调试应用。  
-本文的例子可以在本项目的示例代码中看到并下载，如果喜欢请star，如果觉得有纰漏请提交issue，如果你有更好的点子可以提交pull request。本文的示例代码主要是基于[Logger][9]和[LogUtils][8]进行编写的，如果想了解更多请查看他们的详细解释。
+本文的例子都可以在示例代码中看到并下载，如果喜欢请star，如果觉得有纰漏请提交issue，如果你有更好的点子可以提交pull request。本文的示例代码主要是基于[Logger][1]和[LogUtils][2]进行编写的，如果想了解更多请查看他们的详细解释。  
+本文固定连接：[https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.8/log/log.md][3]  
+大屏畅读版：[https://www.zybuluo.com/shark0017/note/163330][4]
 
 ### 需求  
 我们都知道android中log是这么写的：
@@ -201,36 +203,40 @@ class User {
 ```  
 结果如下：  
 简单的string类型：
-![此处输入图片的描述][1]  
-
-Json字符串:    
-![此处输入图片的描述][2]  
-
-Object对象：  
-![此处输入图片的描述][3]
-
-数组类型：  
-![此处输入图片的描述][4]  
 ![此处输入图片的描述][5]  
 
+Json字符串:    
+![此处输入图片的描述][6]  
+
+Object对象：  
+![此处输入图片的描述][7]
+
+数组类型：  
+![此处输入图片的描述][8]  
+![此处输入图片的描述][9]  
+
 内部类：  
-![此处输入图片的描述][6]
+![此处输入图片的描述][10]
 
 ### 后记  
 我们可以看到即使一个最简单的log都有很多点是可优化的，而且看到了我们之前一直写的模板式代码是多么枯燥乏味。通过这篇文章，大家可以看到一个优化的过程，相信大家都会喜欢最终的简单、美观、方便的log类去调试应用。当然，我知道还是有很多人不喜欢，那么不妨提出更好的解决方案来一起讨论。相信我们的最终目的是一致的，那就是让开发越来越简便，越来越优雅~
 
 ### 参考自
-[http://ihongqiqu.com/blog/2014/10/16/android-log/][7]  
-[https://github.com/pengwei1024/LogUtils][8]  
-[https://github.com/orhanobut/logger][9]  
+[http://ihongqiqu.com/blog/2014/10/16/android-log/][11]  
+[https://github.com/pengwei1024/LogUtils][12]  
+[https://github.com/orhanobut/logger][13]  
 
 
-  [1]: https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.8/log/string.png?raw=true
-  [2]: https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.8/log/json.png?raw=true
-  [3]: https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.8/log/pojo.png?raw=true
-  [4]: https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.8/log/array.png?raw=true
-  [5]: https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.8/log/arrayes.png?raw=true
-  [6]: https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.8/log/innerCls.png?raw=true
-  [7]: http://ihongqiqu.com/blog/2014/10/16/android-log/
-  [8]: https://github.com/pengwei1024/LogUtils
-  [9]: https://github.com/orhanobut/logger
+  [1]: https://github.com/orhanobut/logger
+  [2]: https://github.com/pengwei1024/LogUtils
+  [3]: https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.8/log/log.md
+  [4]: https://www.zybuluo.com/shark0017/note/163330
+  [5]: https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.8/log/string.png?raw=true
+  [6]: https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.8/log/json.png?raw=true
+  [7]: https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.8/log/pojo.png?raw=true
+  [8]: https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.8/log/array.png?raw=true
+  [9]: https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.8/log/arrayes.png?raw=true
+  [10]: https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.8/log/innerCls.png?raw=true
+  [11]: http://ihongqiqu.com/blog/2014/10/16/android-log/
+  [12]: https://github.com/pengwei1024/LogUtils
+  [13]: https://github.com/orhanobut/logger
