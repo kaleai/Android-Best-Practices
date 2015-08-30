@@ -1,0 +1,195 @@
+package kale.ui.view;
+
+import android.app.Activity;
+import android.content.Context;
+import android.os.Handler;
+import android.support.annotation.CheckResult;
+import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
+import android.view.View;
+import android.widget.Toast;
+
+/**
+ * 让toast变得更简易的封装类，可以提供线程中使用的toast。还可以通过showByDuration()来设置toast的显示时间.
+ *
+ * @author Jack Tony
+ * @date 2015/4/29
+ */
+public class EasyToast {
+
+    private Toast mToast = null;
+
+    private Handler mHandler = null;
+
+    private int duration = 0;
+
+    private int currDuration = 0;
+
+    private final int DEFAULT = 2000;
+
+    public EasyToast(Context context) {
+        currDuration = DEFAULT;
+        mHandler = new Handler(context.getMainLooper());
+        mToast = Toast.makeText(context, null, Toast.LENGTH_LONG);
+    }
+
+    private Runnable mToastThread = new Runnable() {
+
+        public void run() {
+            mToast.show();
+            mHandler.postDelayed(mToastThread, DEFAULT);// 每隔2秒显示一次
+            if (duration != 0) {
+                if (currDuration <= duration) {
+                    currDuration += DEFAULT;
+                } else {
+                    cancel();
+                }
+            }
+        }
+    };
+
+    /**
+     * 返回内部的toast对象。可以进行多样化的设置
+     */
+    @CheckResult
+    public Toast getToast() {
+        return mToast;
+    }
+
+    /**
+     * 设置toast的文字
+     */
+    @CheckResult
+    public EasyToast setText(String text) {
+        mToast.setText(text);
+        return this;
+    }
+
+    /**
+     * 设置toast显示的位置
+     *
+     * @param gravity 位置，可以是Gravity.CENTER等
+     * @param xOffset x轴的偏移量
+     * @param yOffset y轴的偏移量
+     */
+    @CheckResult
+    public EasyToast setGravity(int gravity, int xOffset, int yOffset) {
+        mToast.setGravity(gravity, xOffset, yOffset);
+        return this;
+    }
+
+    /**
+     * 显示toast
+     *
+     * @param duration toast显示的时间（单位：ms）
+     */
+    public void show(int duration) {
+        this.duration = duration;
+        mHandler.post(mToastThread);
+    }
+
+    /**
+     * 设置toast的view
+     */
+    public void setView(View view) {
+        mToast.setView(view);
+    }
+
+    /**
+     * 让toast消失的方法
+     */
+    public void cancel() {
+        mHandler.removeCallbacks(mToastThread);// 先把显示线程删除
+        mToast.cancel();// 把最后一个线程的显示效果cancel掉，就一了百了了
+        currDuration = DEFAULT;
+    }
+
+    //// ---------------------  封装的静态方法  --------------------- ////
+
+    private static Activity mActivity;
+
+    public static void attach(@NonNull Activity activity) {
+        mActivity = activity;
+    }
+
+    public static void detach() {
+        mActivity = null;
+    }
+    
+    /**
+     * 短暂显示toast
+     */
+    public static void showToast(@StringRes int msg) {
+        show(mActivity.getString(msg), Toast.LENGTH_SHORT);
+    }
+
+    /**
+     * 短暂显示toast
+     */
+    public static void showToast(String msg) {
+        show(msg, Toast.LENGTH_SHORT);
+    }
+
+    /**
+     * 显示长时间的toast
+     */
+    public static void showToastLong(@StringRes int msg) {
+        show(mActivity.getString(msg), Toast.LENGTH_LONG);
+    }
+
+    /**
+     * 显示长时间的toast
+     */
+    public static void showToastLong(String msg) {
+        show(msg, Toast.LENGTH_LONG);
+    }
+
+    /**
+     * @param length @param length toast的显示的时间长度：{Toast.LENGTH_SHORT, Toast.LENGTH_LONG}
+     */
+    private static void show(String msg, int length) {
+        Toast.makeText(mActivity, msg, length).show();
+    }
+
+    //////////////////////////// In other thread ////////////////////////////
+    
+    /**
+     * 当你在线程中显示短暂toast时，请使用这个方法
+     */
+    public static void showToastInThread(@StringRes int msg) {
+        showInThread(mActivity.getString(msg), Toast.LENGTH_SHORT);
+    }
+
+    /**
+     * 当你在线程中显示短暂toast时，请使用这个方法
+     */
+    public static void showToastInThread(@NonNull String msg) {
+        showInThread(msg, Toast.LENGTH_SHORT);
+    }
+
+    /**
+     * 当你在线程中显示长期toast时，请使用这个方法
+     */
+    public static void showToastLongInThread(@StringRes int msg) {
+        showInThread(mActivity.getString(msg), Toast.LENGTH_LONG);
+    }
+
+    /**
+     * 当你在线程中显示长期toast时，请使用这个方法
+     */
+    public static void showToastLongInThread(@NonNull String msg) {
+        showInThread(msg, Toast.LENGTH_LONG);
+    }
+
+    /**
+     * 当你在线程中使用toast时，请使用这个方法(可以控制显示多长时间)
+     */
+    private static void showInThread(final String msg, final int length) {
+        mActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                show(msg, length);
+            }
+        });
+    }
+}
