@@ -1,4 +1,4 @@
-# Log
+# Log最佳实践
 
 使用更好的log来调试应用。  
 本文的例子都可以在示例代码中看到并下载，如果喜欢请star，如果觉得有纰漏请提交issue，如果你有更好的点子可以提交pull request。本文的示例代码主要是基于[Logger][9]和[LogUtils][8]进行编写的，如果想了解更多请查看他们的详细解释。
@@ -74,7 +74,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 #### 2.3 在终端能显示当前类名并且增加超链  
 这个功能其实ide是支持的，只不过我们可以通过一些神奇的方法来做到更好的效果。下面就给出两个可行的方法：
 ```JAVA
-/**
+    /**
      * @return 当前的类名（全名）
      */
     private static String getClassName() {
