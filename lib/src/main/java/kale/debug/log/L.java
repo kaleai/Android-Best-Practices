@@ -13,6 +13,7 @@ import java.util.Set;
 
 /**
  * @edit Jack Tony
+ * @edit haoGe
  * @date 2015/8/25
  */
 public final class L {
@@ -41,39 +42,39 @@ public final class L {
     }
 
     public static void d(String message, Object... args) {
-        Logger.d(message, args);
+        Logger.t(getClassName()).d(message, args);
     }
 
     public static void e(String message, Object... args) {
-        Logger.e(message, args);
+        Logger.t(getClassName()).e(message, args);
     }
 
     public static void e(Throwable throwable, String message, Object... args) {
-        Logger.e(throwable, message, args);
+        Logger.t(getClassName()).e(throwable, message, args);
     }
 
     public static void i(String message, Object... args) {
-        Logger.i(message, args);
+        Logger.t(getClassName()).i(message, args);
     }
 
     public static void v(String message, Object... args) {
-        Logger.v(message, args);
+        Logger.t(getClassName()).v(message, args);
     }
 
     public static void w(String message, Object... args) {
-        Logger.w(message, args);
+        Logger.t(getClassName()).w(message, args);
     }
 
     public static void wtf(String message, Object... args) {
-        Logger.wtf(message, args);
+        Logger.t(getClassName()).wtf(message, args);
     }
 
     public static void json(String json) {
-        Logger.json(json);
+        Logger.t(getClassName()).json(json);
     }
 
     public static void xml(String xml) {
-        Logger.xml(xml);
+        Logger.t(getClassName()).xml(xml);
     }
 
     /**
@@ -102,7 +103,7 @@ public final class L {
                     default:
                         break;
                 }
-                Logger.d(msg + "}");
+                Logger.t(getClassName()).d(msg + "}");
             } else if (object instanceof Collection) {
                 Collection collection = (Collection) object;
                 String msg = "%s size = %d [\n";
@@ -117,7 +118,7 @@ public final class L {
                                 flag++ < collection.size() - 1 ? ",\n" : "\n");
                     }
                 }
-                Logger.d(msg + "\n]");
+                Logger.t(getClassName()).d(msg + "\n]");
             } else if (object instanceof Map) {
                 String msg = simpleName + " {\n";
                 Map<Object, Object> map = (Map<Object, Object>) object;
@@ -128,13 +129,25 @@ public final class L {
                     msg += String.format(itemString, SystemUtil.objectToString(key),
                             SystemUtil.objectToString(value));
                 }
-                Logger.d(msg + "}");
+                Logger.t(getClassName()).d(msg + "}");
             } else {
-                Logger.d(SystemUtil.objectToString(object));
+                Logger.t(getClassName()).d(SystemUtil.objectToString(object));
             }
         } else {
-            Logger.d(SystemUtil.objectToString(object));
+            Logger.t(getClassName()).d(SystemUtil.objectToString(object));
         }
     }
 
+    /**
+     * @return 当前的类名(simpleName)
+     */
+    private static String getClassName() {
+        String result;
+        StackTraceElement thisMethodStack = (new Exception()).getStackTrace()[2];
+        result = thisMethodStack.getClassName();
+        int lastIndex = result.lastIndexOf(".");
+        result = result.substring(lastIndex + 1, result.length());
+        return result;
+    }
+    
 }

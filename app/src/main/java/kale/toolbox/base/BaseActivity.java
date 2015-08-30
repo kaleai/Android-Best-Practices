@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v7.app.AppCompatActivity;
 
-import kale.debug.log.L;
 import kale.ui.util.ActivityUtil;
 import kale.ui.util.KeyBoardUtil;
 import kale.ui.view.EasyToast;
@@ -67,7 +66,6 @@ public abstract class BaseActivity<B extends ViewDataBinding> extends AppCompatA
     protected abstract void setViews();
 
     private void attachUtil() {
-        L.init(TAG); // Log
         ActivityUtil.attach(this); // Activity
         EasyToast.attach(this); // Toast
         IntentUtil.attach(this); // Intent

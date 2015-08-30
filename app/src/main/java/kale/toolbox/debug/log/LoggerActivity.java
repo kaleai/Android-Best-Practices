@@ -74,7 +74,6 @@ public class LoggerActivity extends BaseActivity {
         }
     }
 
-
     /**
      * @return 当前的类名（全名）
      */
@@ -84,7 +83,6 @@ public class LoggerActivity extends BaseActivity {
         result = thisMethodStack.getClassName();
         return result;
     }
-
 
 
     /**
