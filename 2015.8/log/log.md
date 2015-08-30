@@ -3,8 +3,6 @@
 使用更好的log来调试应用。  
 本文的例子都可以在示例代码中看到并下载，如果喜欢请star，如果觉得有纰漏请提交issue，如果你有更好的点子可以提交pull request。本文的示例代码主要是基于[Logger][9]和[LogUtils][8]进行编写的，如果想了解更多请查看他们的详细解释。
 
----
-
 ### 需求  
 我们都知道android中log是这么写的：
 ```JAVA
@@ -48,25 +46,29 @@ L.d("This is a debug log");
     protected static final boolean LOG = false;
 ```
 
-
 ### 分析  
 当我们接到了上面需求后就会觉得，产品经理真是恐怖的生物。我们现在需要为这样一个人提供一个很好的API，以满足他的需求。但这个需求不合理么，很合理，我们的宗旨就是让无意义的重复代码去死，如果死不掉就交给机器来做。我们应该做哪些真正需要我们做的事情，而不是像一个没思想的猿猴一般整天写模板式代码。  
 
 ### 解决方案  
 ####2.1 消灭TAG  
-我们用TAG就是做定位，同时方便过滤无意义的log。那么索性把当前类名作为这样一个TAG的标识。于是，在BaseActivity中建立如下代码：
+我们用TAG就是做定位，同时方便过滤无意义的log。那么索性把当前类名作为这样一个TAG的标识。于是，在我们自定义的log类中就用如下代码设置tag：
 ```JAVA
-public abstract class BaseActivity extends AppCompatActivity {
-
-    protected final String TAG = getClass().getSimpleName();
-    
-    @Override
-    protected void onResume() {
-        super.onResume();
-        L.init(TAG); // Log
+    /**
+     * @return 当前的类名(simpleName)
+     */
+    private static String getClassName() {
+        String result;
+        StackTraceElement thisMethodStack = (new Exception()).getStackTrace()[2];
+        result = thisMethodStack.getClassName();
+        int lastIndex = result.lastIndexOf(".");
+        result = result.substring(lastIndex + 1, result.length());
+        return result;
     }
 ```  
-这样每次进入一个新的Activity的时候就可以更新当前的TAG，一劳永逸。  
+这样我们就轻易的摆脱了tag的纠缠。
+
+> 这个方法来自于豪哥的建议，这里感谢豪哥的意见。  
+
 
 ####2.2 将Log简化  
 有人说我们IDE不都有代码提示了么，为啥还用一个L来做简化。首先用L比log能更快的得到提示，输入一个l.d就会直接显示提示，并且不会和原本的log类混淆。其次就是调用更方便。简化log这个东西太简单了，直接自定义一个L类，用作Log的输出即可。  
