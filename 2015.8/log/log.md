@@ -1,9 +1,9 @@
 # Log最佳实践
 
-使用更好的log来调试应用。  
+**概要：如何使用更好的log来调试应用。**  
 本文的例子都可以在示例代码中看到并下载，如果喜欢请star，如果觉得有纰漏请提交issue，如果你有更好的点子可以提交pull request。本文的示例代码主要是基于[Logger][1]和[LogUtils][2]进行编写的，如果想了解更多请查看他们的详细解释。  
-本文固定连接：[https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.8/log/log.md][3]  
-大屏畅读版：[https://www.zybuluo.com/shark0017/note/163330][4]
+固定连接：[https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.8/log/log.md][3]  
+大屏畅读：[https://www.zybuluo.com/shark0017/note/163330][4]
 
 ### 需求  
 我们都知道android中log是这么写的：
@@ -224,7 +224,14 @@ Object对象：
 ### 参考自
 [http://ihongqiqu.com/blog/2014/10/16/android-log/][11]  
 [https://github.com/pengwei1024/LogUtils][12]  
-[https://github.com/orhanobut/logger][13]  
+[https://github.com/orhanobut/logger][13]    
+
+### 作者  
+![Jack Tony][14]     
+
+developer_kale@.com  
+@天之界线2010
+
 
 
   [1]: https://github.com/orhanobut/logger
@@ -240,3 +247,4 @@ Object对象：
   [11]: http://ihongqiqu.com/blog/2014/10/16/android-log/
   [12]: https://github.com/pengwei1024/LogUtils
   [13]: https://github.com/orhanobut/logger
+  [14]: https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.8/log/avatar.jpg?raw=true
