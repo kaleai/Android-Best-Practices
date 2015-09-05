@@ -15,12 +15,14 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+-keep class kale.toolbox.debug.log.** { *; } 
 
 #不混淆资源类
 -keepclassmembers class **.R$* {
     public static <fields>;
 }
 
+#去除Log类
 -assumenosideeffects class android.util.Log {
     public static *** d(...);
     public static *** i(...);

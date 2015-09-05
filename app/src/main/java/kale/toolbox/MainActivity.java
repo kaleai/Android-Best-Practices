@@ -16,7 +16,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     String[] demoStr = {"Log"};
     
     @Override
-    protected int getLayoutResId() {
+    protected int getLayoutResId() {    
         return R.layout.activity_main;
     }
 
