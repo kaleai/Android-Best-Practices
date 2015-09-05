@@ -21,14 +21,8 @@
         <activity android:name=".debug.log.LoggerActivity"
             android:label="Log"/>
 
-        <activity android:name=".ui.view.EasyToastActivity"/>
-        
-        <activity
-            android:name=".ui.util.EditTextActivity"
-            android:label="@string/title_activity_edit_util_test2" >
-        </activity>
-
-        
+        <activity android:name=".ui.view.EasyToastActivity"
+            android:label="Toast"/>
         
     </application>
 
