@@ -3,7 +3,6 @@
 **概要：如何使用更好的log来调试应用。**  
 本文的例子都可以在示例代码中看到并下载，如果喜欢请star，如果觉得有纰漏请提交issue，如果你有更好的点子可以提交pull request。本文的示例代码主要是基于[Logger][1]和[LogUtils][2]进行编写的，如果想了解更多请查看他们的详细解释。  
 固定连接：[https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.8/log/log.md][3]  
-大屏畅读：[https://www.zybuluo.com/shark0017/note/163330][4]
 
 ### 需求  
 我们都知道android中log是这么写的：
