@@ -1,7 +1,6 @@
 # Android-Best-Practices
 Android最佳实践示例  
 
-<img align="right" src='https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/avatar.jpg?raw=true' width='128' height='128'/>
 
 ###目录
 起笔时间2015年8月30日（晚）  

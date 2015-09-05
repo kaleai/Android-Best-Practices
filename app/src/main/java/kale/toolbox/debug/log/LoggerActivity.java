@@ -1,5 +1,6 @@
 package kale.toolbox.debug.log;
 
+import android.support.annotation.Keep;
 import android.util.Log;
 
 import kale.debug.log.L;
@@ -21,6 +22,9 @@ public class LoggerActivity extends BaseActivity {
 
     @Override
     protected void setViews() {
+        ATest aTest = new ATest(this);
+        aTest.setAdapter(null);
+        
         // string
         String str = fromIntent("key");
         L.d(str != null ? str : "hello world");
@@ -49,12 +53,12 @@ public class LoggerActivity extends BaseActivity {
         // sub class
         new User("name", "sex").log();
 
-        
         Log.d(TAG, "类名 = " + getClassName());
         Log.d(TAG, "当前方法名+行数 = " + callMethodAndLine());
     }
 
-    class User {
+    @Keep
+    public class User {
 
         private String name;
 

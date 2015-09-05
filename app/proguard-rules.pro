@@ -15,7 +15,10 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
--keep class kale.toolbox.debug.log.** { *; } 
+
+-keep class kale.toolbox.debug.log.** { *; }
+
+-keep class kale.debug.log.** { *; }
 
 #不混淆资源类
 -keepclassmembers class **.R$* {

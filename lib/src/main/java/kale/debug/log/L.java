@@ -16,7 +16,7 @@ import java.util.Set;
  * @edit haoGe
  * @date 2015/8/25
  */
-public final class L {
+public class L {
 
     private L() {
     }
