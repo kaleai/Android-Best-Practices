@@ -13,7 +13,7 @@ import static kale.ui.util.ActivityUtil.startAct;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
-    String[] demoStr = {"Log","Toast"};
+    String[] demoStr = {"Log"};
     
     @Override
     protected int getLayoutResId() {    

@@ -2,11 +2,8 @@ package kale.toolbox.debug.log;
 
 import android.support.annotation.Keep;
 import android.util.Log;
-import android.widget.Toast;
 
 import kale.debug.log.L;
-import kale.toolbox.R;
-import kale.toolbox.adapter.Item;
 import kale.toolbox.base.BaseActivity;
 import kale.util.TestUtil;
 
@@ -20,13 +17,11 @@ public class LoggerActivity extends BaseActivity {
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.test_activity;
+        return 0;
     }
 
     @Override
     protected void setViews() {
-        Toast.makeText(this, "name" + Item.class.getName(), Toast.LENGTH_SHORT).show();
-        
         // string
         String str = fromIntent("key");
         L.d(str != null ? str : "hello world");

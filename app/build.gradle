@@ -5,7 +5,7 @@ apply plugin: 'me.tatarka.retrolambda'
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.0"
-    
+
     defaultConfig {
         applicationId "kale.toolbox"
         minSdkVersion 14
@@ -29,15 +29,22 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
+            pseudoLocalesEnabled true
         }
     }
 
+    productFlavors {
+        dev {}
+    }
+    
     compileOptions {
         encoding "UTF-8"
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
+
+
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
