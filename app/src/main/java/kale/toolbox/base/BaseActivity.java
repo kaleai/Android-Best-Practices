@@ -18,7 +18,7 @@ import kale.util.IntentUtil;
  */
 public abstract class BaseActivity<B extends ViewDataBinding> extends AppCompatActivity {
 
-    protected final String TAG = getClass().getSimpleName();
+    protected String TAG = getClass().getSimpleName();
     
     protected B b;
 
