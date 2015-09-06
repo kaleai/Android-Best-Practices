@@ -17,7 +17,7 @@ public class LoggerActivity extends BaseActivity {
 
     @Override
     protected int getLayoutResId() {
-        return 0;
+        return 0; // 0表示采用默认的布局
     }
 
     @Override

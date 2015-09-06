@@ -59,12 +59,12 @@ public abstract class BaseActivity<B extends ViewDataBinding> extends AppCompatA
             b = DataBindingUtil.setContentView(this, getLayoutResId());
         }
     }
-
+    
     /**
      * 设置所有的view
      */
     protected abstract void setViews();
-
+    
     private void attachUtil() {
         ActivityUtil.attach(this); // Activity
         EasyToast.attach(this); // Toast

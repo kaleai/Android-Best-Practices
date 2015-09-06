@@ -33,7 +33,7 @@ public class IntentUtil {
         if ((intent = mActivity.getIntent()) != null) {
             return (T) intent.getExtras().get(key);
         } else {
-            throw new NullPointerException("Intent's key is null");
+            throw new NullPointerException("Intent is null");
         } 
     }
 }
