@@ -2,7 +2,6 @@ package kale.util;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 
 /**
  * @author Jack Tony
@@ -10,15 +9,6 @@ import android.support.annotation.NonNull;
  */
 public class IntentUtil {
 
-    private static Activity mActivity;
-
-    public static void attach(@NonNull Activity activity) {
-        mActivity = activity;
-    }
-
-    public static void detach() {
-        mActivity = null;
-    }
     
     /**
      * 判断intent和它的bundle是否为空
@@ -28,9 +18,9 @@ public class IntentUtil {
     }
 
     @SuppressWarnings("unchecked")
-    public static <T> T fromIntent(String key) {
+    public static <T> T fromIntent(Activity activity, String key) {
         Intent intent;
-        if ((intent = mActivity.getIntent()) != null) {
+        if ((intent = activity.getIntent()) != null) {
             return (T) intent.getExtras().get(key);
         } else {
             throw new NullPointerException("Intent is null");

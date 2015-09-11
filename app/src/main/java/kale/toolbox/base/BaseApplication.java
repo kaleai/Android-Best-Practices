@@ -22,7 +22,7 @@ public class BaseApplication extends Application {
         super.onCreate();
         L.init(">")               // default PRETTYLOGGER or use just init()
                 //.setMethodCount(2);            // default 2
-                //.hideThreadInfo()             // default shown
+                .hideThreadInfo()             // default shown
                 .setMethodOffset(1);           // default 0
         // 在debug下，才显示log
         L.init(">").setLogLevel(BuildConfig.DEBUG ? LogLevel.FULL : LogLevel.NONE); // default LogLevel.FULL

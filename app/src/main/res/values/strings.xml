@@ -6,4 +6,5 @@
     <string name="title_activity_edit_util_test2">EditUtilTest2</string>
     
     <color name="red">#ff0000</color>
+    <string name="title_activity_reflect">ReflectActivity</string>
 </resources>

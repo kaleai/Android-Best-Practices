@@ -16,7 +16,6 @@ public class PhoneUtil {
     public static String getIMEINumber(Context mContext) {
         TelephonyManager telephonyManager = (TelephonyManager) mContext
                 .getSystemService(Activity.TELEPHONY_SERVICE);
-        String id = telephonyManager.getDeviceId();
-        return id;
+        return telephonyManager.getDeviceId();
     }
 }

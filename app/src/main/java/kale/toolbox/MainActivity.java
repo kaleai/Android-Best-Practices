@@ -3,34 +3,35 @@ package kale.toolbox;
 import android.content.Intent;
 import android.widget.ArrayAdapter;
 
-import kale.debug.log.L;
 import kale.toolbox.base.BaseActivity;
 import kale.toolbox.databinding.ActivityMainBinding;
 import kale.toolbox.debug.log.LoggerActivity;
-import kale.toolbox.ui.view.EasyToastActivity;
+import kale.toolbox.reflect.ReflectActivity;
 
 import static kale.ui.util.ActivityUtil.startAct;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
-    String[] demoStr = {"Log"};
+    String[] demoStr = {"Android Log","Java反射"};
     
     @Override
-    protected int getLayoutResId() {    
+    public int getLayoutResId() {
         return R.layout.activity_main;
     }
 
     @Override
-    protected void setViews() {
-        L.d("This is MainActivity");
+    public void setViews() {
+        // fast jump
+        b.mainLv.post(() -> startAct(getActivity(), ReflectActivity.class));
+
         b.mainLv.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, demoStr));
         b.mainLv.setOnItemClickListener((parent, view, position, id) -> {
             switch ((int) id) {
                 case 0:
-                    startAct(LoggerActivity.class, new Intent().putExtra("key", "value--->"));
+                    startAct(getActivity(), LoggerActivity.class, new Intent().putExtra("key", "value--->"));
                     break;
                 case 1:
-                    startAct(EasyToastActivity.class);
+                    startAct(getActivity(), ReflectActivity.class);
                     break;
                 default:
             }

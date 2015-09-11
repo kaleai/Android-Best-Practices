@@ -3,8 +3,8 @@
     package="kale.toolbox" >
 
     <application
-        android:allowBackup="true"
         android:name=".base.BaseApplication"
+        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
@@ -17,13 +17,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        <activity android:name=".debug.log.LoggerActivity"
-            android:label="Log"/>
-
-        <activity android:name=".ui.view.EasyToastActivity"
-            android:label="Toast"/>
-        
+        <activity
+            android:name=".debug.log.LoggerActivity"
+            android:label="Log" />
+        <activity
+            android:name=".ui.view.EasyToastActivity"
+            android:label="Toast" />
+        <activity
+            android:name=".reflect.ReflectActivity"
+            android:label="ReflectActivity">
+        </activity>
     </application>
 
 </manifest>

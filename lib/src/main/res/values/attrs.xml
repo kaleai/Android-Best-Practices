@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- tabLayout -->
+    <declare-styleable name="ExTabLayout">
+        <attr name="tabViewLayout" format="reference" />
+        <attr name="tools_tabStrArray" format="string"/>
+    </declare-styleable>
+
+    <!-- viewPager -->
+    <declare-styleable name="ExViewPager">
+        <attr name="scrollable" format="boolean" />
+        <attr name="tools_layout0" format="reference" />
+        <attr name="tools_layout1" format="reference" />
+        <attr name="tools_layout2" format="reference" />
+        <attr name="tools_layout3" format="reference" />
+        <attr name="tools_layout4" format="reference" />
+    </declare-styleable>
+    
+</resources>

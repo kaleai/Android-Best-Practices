@@ -12,34 +12,22 @@ import android.support.annotation.NonNull;
  */
 public class ActivityUtil {
     
-    private static Activity mActivity;
-
-    public static void attach(@NonNull Activity activity) {
-        mActivity = activity;
+    public static void startAct(Activity activity, @NonNull Class cls) {
+        activity.startActivity(new Intent(activity, cls));
     }
 
-    public static void detach() {
-        mActivity = null;
+    public static void startAct(Activity activity, @NonNull Class cls, @NonNull Intent intent) {
+        intent.setClass(activity, cls);
+        activity.startActivity(intent);
     }
 
-    public static void startAct(@NonNull Class cls) {
-        mActivity.startActivity(new Intent(mActivity, cls));
-    }
-
-    public static void startAct(@NonNull Class cls, @NonNull Intent intent) {
-        intent.setClass(mActivity, cls);
-        mActivity.startActivity(intent);
-    }
-
-    public static void startActForResult(@NonNull Class cls, @NonNull Intent intent,int requestCode) {
-        intent.setClass(mActivity, cls);
-        mActivity.startActivityForResult(intent, requestCode);
+    public static void startActForResult(Activity activity, @NonNull Class cls, @NonNull Intent intent,int requestCode) {
+        intent.setClass(activity, cls);
+        activity.startActivityForResult(intent, requestCode);
     }
     
-    public void addFragment(@IdRes int containerViewId, Fragment fragment) {
-        mActivity.getFragmentManager().beginTransaction().add(containerViewId, fragment).commitAllowingStateLoss();
+    public void addFragment(Activity activity, @IdRes int containerViewId, Fragment fragment) {
+        activity.getFragmentManager().beginTransaction().add(containerViewId, fragment).commitAllowingStateLoss();
     }
-    
-    
 
 }

@@ -16,27 +16,34 @@ import static kale.util.IntentUtil.fromIntent;
 public class LoggerActivity extends BaseActivity {
 
     @Override
-    protected int getLayoutResId() {
+    public int getLayoutResId() {
         return 0; // 0表示采用默认的布局
     }
 
     @Override
-    protected void setViews() {
+    public void setViews() {
         // string
-        String str = fromIntent("key");
+        String str = fromIntent(this,"key");
         L.d(str != null ? str : "hello world");
-
+        
+        // simple log
+        L.ii("a");
+        L.dd("b");
+        L.ee("c");
+        L.vv("d");
+        L.ww("e");
+        
         // json
         L.json("[{\"CityId\":18,\"CityName\":\"西安\",\"ProvinceId\":27,\"CityOrder\":1},{\"CityId\":53,\"CityName\":\"广州\",\"ProvinceId\":27,\"CityOrder\":1}]'");
 
         // object
-        L.Object(new User("jack", "f"));
+        L.object(new User("jack", "f"));
 
         // list
-        L.Object(TestUtil.getLongStringList(this));
+        L.object(TestUtil.getLongStringList(this));
 
         // array
-        L.Object(TestUtil.getShortStringArr());
+        L.object(TestUtil.getShortStringArr());
 
         // arrays
         double[][] doubles = {
@@ -45,7 +52,7 @@ public class LoggerActivity extends BaseActivity {
                 {1.2, 1.6, 1.7, 30, 33},
                 {1.2, 1.6, 1.7, 30, 33}
         };
-        L.Object(doubles);
+        L.object(doubles);
 
         // sub class
         new User("name", "sex").log();
