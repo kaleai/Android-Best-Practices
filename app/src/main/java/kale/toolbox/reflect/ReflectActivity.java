@@ -1,5 +1,7 @@
 package kale.toolbox.reflect;
 
+import android.content.Context;
+import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
 import android.widget.LinearLayout;
@@ -46,6 +48,7 @@ public class ReflectActivity extends BaseActivity<EmptyActivityBinding> {
         if (fragment != null) {
             mTv.setText(word);
         }
+        openStatusBar(this);
     }
 
     private void callMethod() {
@@ -62,4 +65,37 @@ public class ReflectActivity extends BaseActivity<EmptyActivityBinding> {
         L.d("setgetParam is " + Reflect.on(mTv).get("mText"));
     }
 
+
+    private static void doInStatusBar(Context mContext, String methodName) {
+           /*try {
+                Object service = mContext.getSystemService("statusbar");
+                Class<?> statusBarManager = Class.forName("android.app.StatusBarManager");
+                Method expand = statusBarManager.getMethod(methodName);
+                expand.invoke(service);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        */
+        
+        
+        Reflect.on("android.app.StatusBarManager").create(mContext).call(methodName);
+    }
+
+    /**
+     * 显示消息中心
+     */
+    public static void openStatusBar(Context mContext) {
+        // 判断系统版本号
+        String methodName = (Build.VERSION.SDK_INT <= 16) ? "expand" : "expandNotificationsPanel";
+        doInStatusBar(mContext, methodName);
+    }
+
+    /**
+     * 关闭消息中心
+     */
+    public static void closeStatusBar(Context mContext) {
+        // 判断系统版本号
+        String methodName = (Build.VERSION.SDK_INT <= 16) ? "collapse" : "collapsePanels";
+        doInStatusBar(mContext, methodName);
+    }
 }

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kale.toolbox" >
 
+    <uses-permission android:name="android.permission.EXPAND_STATUS_BAR"/>
+
     <application
         android:name=".base.BaseApplication"
         android:allowBackup="true"
