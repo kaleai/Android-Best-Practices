@@ -22,7 +22,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     @Override
     public void setViews() {
         // fast jump
-        b.mainLv.post(() -> startAct(getActivity(), ReflectActivity.class));
+        //b.mainLv.post(() -> startAct(getActivity(), ReflectActivity.class));
 
         b.mainLv.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, demoStr));
         b.mainLv.setOnItemClickListener((parent, view, position, id) -> {

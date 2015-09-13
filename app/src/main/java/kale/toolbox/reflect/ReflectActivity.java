@@ -1,6 +1,8 @@
 package kale.toolbox.reflect;
 
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import kale.debug.log.L;
@@ -31,12 +33,18 @@ public class ReflectActivity extends BaseActivity<EmptyActivityBinding> {
         mTv = Reflect.on(TextView.class).create(this).get();
 
         mTv.setTextSize(30);
-        b.rootLl.addView(mTv);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.gravity = Gravity.CENTER;
+        b.rootLl.addView(mTv,params);
+
+        // 通过类全名得到类
+        String word = Reflect.on("java.lang.String").create("Reflect TextView").get();
 
         // 无参数，建立类
         Fragment fragment = Reflect.on(Fragment.class).create().get();
         if (fragment != null) {
-            mTv.setText("Reflect TextView");
+            mTv.setText(word);
         }
     }
 
