@@ -125,7 +125,7 @@ private static void doInStatusBar(Context mContext, String methodName) {
 
 
 ### 后记  
-我们终于完成了用一行代码写反射，避免了很多无意义的模板式代码。需要再次说明的是，本文是依据[jOOR][4] 进行编写的，【这里】有原项目readme的中文翻译。  
+我们终于完成了用一行代码写反射，避免了很多无意义的模板式代码。需要再次说明的是，本文是依据[jOOR][4] 进行编写的，[这里][7]有原项目readme的中文翻译。  
 jOOR是我无意中遇到的开源库，第一次见到它时我就知道这个是我想要的，因为那时候我被反射搞的很乱，而它简洁的编码方式给我带来了新的思考，大大提高了代码可读性。顺便一说，作者人比较好（就是死活不愿意让我放入中文的readme），技术也很不错。该项目有很详细的测试用例，并且还给出了几个类似的反射调用封装库。可见作者在写库时做了大量的调研和测试工作，让我们可以放心的运用该库*（其实就两个类）*。  
 本文希望带给大家一个反射的新思路，给出一个最简单实用的反射写法，希望能被大家迅速运用到实践中去。更加重要的是，通过对jOOR的分析，让我知道了写库前应该调研类似的库，而不是完全的创造新轮子，调研和测试是代码稳定性的重要保障。
 
@@ -146,3 +146,4 @@ developer_kale@.com
   [4]: https://github.com/jOOQ/jOOR
   [5]: http://www.cnblogs.com/tianzhijiexian/p/3906774.html
   [6]: https://github.com/tianzhijiexian/HttpAnnotation/blob/master/lib/src/main/java/kale/net/http/util/HttpReqAdapter.java
+  [7]: https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.9/reflect/README%20-%20chinese.md
