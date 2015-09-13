@@ -4,7 +4,7 @@
 本文的例子都可以在示例代码中看到并下载，如果喜欢请star，如果觉得有纰漏请提交issue，如果你有更好的点子可以提交pull request。本文的示例代码主要是基于[Logger][1]和[LogUtils][2]进行编写的，如果想了解更多请查看他们的详细解释。  
 固定连接：[https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.8/log/log.md][3]  
 
-### 需求  
+### 一、需求  
 我们都知道android中log是这么写的：
 ```JAVA
 Log.d(TAG, "This is a debug log");
@@ -47,11 +47,11 @@ L.d("This is a debug log");
     protected static final boolean LOG = false;
 ```
 
-### 分析  
+### 二、分析  
 当我们接到了上面需求后就会觉得，产品经理真是恐怖的生物。我们现在需要为这样一个人提供一个很好的API，以满足他这些杂乱的需求。但这个需求不合理么，很合理，我们的宗旨就是让无意义的重复代码去死，如果死不掉就交给机器来做。我们应该做那些真正需要我们做的事情，而不是像一个没思想的猿猴一般整天写模板式代码。  
 
-### 解决方案  
-####2.1 消灭TAG  
+### 三、解决方案  
+#### 3.1 消灭TAG  
 我们用TAG就是做定位，同时方便过滤无意义的log。那么索性把当前类名作为这样一个TAG的标识。于是，在我们自定义的log类中就用如下代码设置tag：
 ```JAVA
     /**
@@ -71,10 +71,10 @@ L.d("This is a debug log");
 > 这个方法来自于豪哥的建议，这里感谢豪哥的意见。  
 
 
-####2.2 将Log简化  
+#### 3.2 将Log简化  
 有人说我们IDE不都有代码提示了么，为啥还用一个L来做简化。首先用L比log能更快的得到提示，输入一个l.d就会直接显示提示，并且不会和原本的log类混淆。其次就是调用更方便。简化log这个东西太简单了，直接自定义一个L类，用作Log的输出即可。  
 
-#### 2.3 在终端能显示当前类名并且增加超链  
+#### 3.3 在终端能显示当前类名并且增加超链  
 这个功能其实ide是支持的，只不过我们可以通过一些神奇的方法来做到更好的效果。下面就给出两个可行的方法：
 ```JAVA
     /**
@@ -101,7 +101,7 @@ L.d("This is a debug log");
     }
 ```
 
-#### 2.4 让log更加美观  
+#### 3.4 让log更加美观  
 人们对美的追求真是无止境，更加美丽的log也能方便我们一下子区分什么是系统打印的，什么是我们自己应用打印的。做到这点也比较简单，就是在输出前做点字符串拼接的工作。  
 ```JAVA
  private static final char TOP_LEFT_CORNER = '╔';
@@ -117,10 +117,10 @@ L.d("This is a debug log");
 ```  
 因为打印log也是消耗性能的，所以我建议最多只保留出现某些异常（这些异常轻于Exception）时打印的log，在调试时打印的log在提交代码前请全部清除。 
 
-#### 2.5 让log支持输出object、map、list、array、jsonStr等对象  
+#### 3.5 让log支持输出object、map、list、array、jsonStr等对象  
 这个需求实现起来也比较容易，如果是简单的POJO的对象，我们用反射得到对象的类变量，通过字符串拼接的方式最终输出值。如果是map等数组结构，那么就用其内部的遍历依次输出值和内容。如果是json的字符串，就需要判断json的`{}`,`[]`这样的特殊字符进行换行处理。  
 
-#### 2.6 增加log自动化和强制开关  
+#### 3.6 增加log自动化和强制开关  
 区分release和debug版本有系统自带的BuildConfig.DEBUG变量，用这个就可以控制是否显示log了。强制开关也很简单，在log初始化的最后判断强制开关是否打开，如果打开那么就覆盖之前的显示设置，直接显示log。转为代码就是这样：
 ```JAVA
 public class BaseApplication extends Application {
@@ -145,7 +145,7 @@ public class BaseApplication extends Application {
 }
 ```
 
-### 最终结果  
+### 四、最终结果  
 首先建立一个activity，在里面输出各种类型的数据。为了测试Inner class和Object的效果，我专门建立了一个很简单的内部类User：
 ```JAVA
 class User {
@@ -215,10 +215,13 @@ Object对象：
 内部类：  
 ![此处输入图片的描述][10]
 
-### 后记  
+### 五、后记  
 我们可以看到即使一个最简单的log都有很多点是可优化的，而且看到了我们之前一直写的模板式代码是多么枯燥乏味。通过这篇文章，大家可以看到一个优化的过程，相信大家都会喜欢最终的简单、美观、方便的log类去调试应用。当然，我知道还是有很多人不喜欢，那么不妨提出更好的解决方案来一起讨论。宁信书则不如无书，我在实际过程中会将L和Log混合使用。我在调试那些会重复调用的方法的时候（比如for循环，onScroll），会利用原生的log，因为log量少，并且可以很方便的进行上下的比对，在调试其他信息的时候会用L的方式，因为更加直观，可以很方便的从系统日志中快速找到我们的log信息。  
 
-同学们，相信我们的最终目的是一致的，那就是让开发越来越简便，越来越优雅~
+同学们，相信我们的最终目的是一致的，那就是让开发越来越简便，越来越优雅~  
+
+### 六、问题  
+我看到了[发布程序时移除Android 调试Log][15] 的技巧，这样就可以在release包中完全去掉log代码，也找到了相关的测试[文章][16]。但是，在实际的测试中发现仍在存在log代码，还望测试成功的朋友给出指导，谢谢。
 
 ### 参考自
 [http://ihongqiqu.com/blog/2014/10/16/android-log/][11]  
@@ -247,3 +250,5 @@ developer_kale@.com
   [12]: https://github.com/pengwei1024/LogUtils
   [13]: https://github.com/orhanobut/logger
   [14]: https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.8/log/avatar.jpg?raw=true
+  [15]: http://www.tuicool.com/articles/fE7bmu
+  [16]: http://blog.csdn.net/jiese1990/article/details/21752159
