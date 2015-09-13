@@ -10,7 +10,7 @@
 
 我们之前写反射都是要这么写：  
 ```java
-public static <T> T create(HttpRequest httpRequest) {
+     public static <T> T create(HttpRequest httpRequest) {
         Object httpRequestEntity = null;
         try {
             Class<T> httpRequestEntityCls = (Class<T>) Class.forName(HttpProcessor.PACKAGE_NAME + "." + HttpProcessor.CLASS_NAME);
@@ -56,7 +56,7 @@ String str = new String();
 ```JAVA
 TextView mTv;
 ```  
-**通过反射得到类：**
+**通过反射得到实例：**
 ```JAVA
 // 有参数，建立类
 mTv = Reflect.on(TextView.class).create(this).get();
@@ -87,9 +87,12 @@ L.d("setgetParam is " + Reflect.on(mTv).get("mText"));
 ```
 
 #### 3.2 什么时候该用反射，什么时候不用反射  
-又到了这样权衡利弊的时候了，首先我们明确，在日常开发中尽量不要用反射，除非遇到了必须要通过反射才能调用的方法。比如我在做一个下拉通知中心功能的时候就遇到了这样的情况。系统没有提供api，所以我们只能通过反射进行调用，所以我自己写了这样一段代码：  
+又到了这样权衡利弊的时候了，首先我们明确，在日常开发中尽量不要用反射，除非遇到了必须要通过反射才能调用的方法。比如我在做一个下拉通知中心功能的时候就遇到了这样的情况。系统没有提供api，所以我们只能通过反射进行调用，所以我自己写了这样一段代码： 
+```xml
+<uses-permission android:name="android.permission.EXPAND_STATUS_BAR"/>
+```
 ```JAVA
-private static void doInStatusBar(Context mContext, String methodName) {
+   private static void doInStatusBar(Context mContext, String methodName) {
         try {
             Object service = mContext.getSystemService("statusbar");
             Class<?> statusBarManager = Class.forName("android.app.StatusBarManager");
@@ -118,10 +121,19 @@ private static void doInStatusBar(Context mContext, String methodName) {
         doInStatusBar(mContext, methodName);
     }
 ```  
-可以看到因为不是系统给出的api，所以谷歌在不同的版本上用了不同的方法名来做处理，用反射的话我们就必须进行版本的判断，这就是需要谨慎用反射的一种情况。  
-我的建议是，如果一个类中有很多地方都是private的，而你的需求都需要依赖这些方法或者变量，那么比起用反射，推荐把这个类复制出来，变成自己的类，像是toolbar这样的类就可以进行这样的操作。  
+先来看看利用jOOR写的`doInStatusBar`方法会简洁到什么程度：  
+```JAVA
+    private static void doInStatusBar(Context mContext, String methodName) {
+        Reflect.on("android.app.StatusBarManager").create(mContext).call(methodName);
+    }
+```   
+哇，就一行代码啊，很爽吧~  
+爽完了，我们就来看看反射问题吧。因为不是系统给出的api，所以谷歌在不同的版本上用了不同的方法名来做处理，用反射的话我们就必须进行版本的判断，这是需要注意的，此外反射在性能方面确实不好，这里需要谨慎。  
+我的建议：  
+如果一个类中有很多地方都是private的，而你的需求都需要依赖这些方法或者变量，那么比起用反射，推荐把这个类复制出来，变成自己的类，像是toolbar这样的类就可以进行这样的操作。  
 在自己写框架的时候，我们肯定会用到反射，很简单的例子就是事件总线和注解框架，翔哥就说过一句话：**无反射，无框架**。也正因为是自己写的框架，所以通过反射调用的方法名和参数一般不会变，更何况做运行时注解框架的话，反射肯定会出现。在这种情况下千万不要害怕反射，索性放心大胆的做。因为它会让你完成很多不可能完成的任务。  
-总结下来就是：实际进行日常开发的时候尽量少用反射，可以通过复制原始类的形式来避免反射。在写框架时，不避讳反射，在关键时利用反射来助自己一臂之力。
+总结下来就是：  
+实际进行日常开发的时候尽量少用反射，可以通过复制原始类的形式来避免反射。在写框架时，不避讳反射，在关键时利用反射来助自己一臂之力。
 
 
 ### 四、后记  
