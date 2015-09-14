@@ -3,6 +3,7 @@ package kale.toolbox.reflect;
 import android.content.Context;
 import android.os.Build;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -38,7 +39,7 @@ public class ReflectActivity extends BaseActivity<EmptyActivityBinding> {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         params.gravity = Gravity.CENTER;
-        b.rootLl.addView(mTv,params);
+        b.rootLl.addView(mTv, params);
 
         // 通过类全名得到类
         String word = Reflect.on("java.lang.String").create("Reflect TextView").get();
@@ -67,18 +68,16 @@ public class ReflectActivity extends BaseActivity<EmptyActivityBinding> {
 
 
     private static void doInStatusBar(Context mContext, String methodName) {
-           /*try {
-                Object service = mContext.getSystemService("statusbar");
-                Class<?> statusBarManager = Class.forName("android.app.StatusBarManager");
-                Method expand = statusBarManager.getMethod(methodName);
-                expand.invoke(service);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        */
-        
-        
-        Reflect.on("android.app.StatusBarManager").create(mContext).call(methodName);
+        /*try {
+            Object service = mContext.getSystemService("statusbar");
+            Method expand = service.getClass().getMethod(methodName);
+            expand.invoke(service);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+
+        Object service = mContext.getSystemService("statusbar");
+        Reflect.on(service).call(methodName);
     }
 
     /**
