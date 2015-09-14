@@ -95,8 +95,7 @@ L.d("setgetParam is " + Reflect.on(mTv).get("mText"));
    private static void doInStatusBar(Context mContext, String methodName) {
         try {
             Object service = mContext.getSystemService("statusbar");
-            Class<?> statusBarManager = Class.forName("android.app.StatusBarManager");
-            Method expand = statusBarManager.getMethod(methodName);
+            Method expand = service.getClass().getMethod(methodName);
             expand.invoke(service);
         } catch (Exception e) {
             e.printStackTrace();
@@ -124,7 +123,8 @@ L.d("setgetParam is " + Reflect.on(mTv).get("mText"));
 先来看看利用jOOR写的`doInStatusBar`方法会简洁到什么程度：  
 ```JAVA
     private static void doInStatusBar(Context mContext, String methodName) {
-        Reflect.on("android.app.StatusBarManager").create(mContext).call(methodName);
+        Object service = mContext.getSystemService("statusbar");
+        Reflect.on(service).call(methodName);
     }
 ```   
 哇，就一行代码啊，很爽吧~  
