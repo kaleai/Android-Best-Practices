@@ -1,6 +1,6 @@
-# 实时调试UI最佳实践
+# UI实时预览最佳实践
 
-**概要：Android中调试UI的各种技巧。**  
+**概要：Android中实时预览UI的各种技巧。**  
 本文的例子都可以在结尾处的示例代码中看到并下载。如果喜欢请star，如果觉得有纰漏请提交issue，如果你有更好的点子可以提交pull request。  
 本文的代码主要是基于作者的实际经验编写的，如果你有其他的技巧和方法也可以参与进来一起完善此文。
 文章固定连接：[https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.9/ui/ui.md](https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.9/ui/ui.md)
