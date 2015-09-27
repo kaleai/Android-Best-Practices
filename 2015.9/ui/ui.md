@@ -21,7 +21,7 @@
 这时候谁再和我讲as可以让你实时地编写UI，我就要和谁拼命了。(┬＿┬)  
 其实这个不是as的错，而是开发者（包括google的开发人员）的错。因为很多开发者不注重实时的ui显示，一切都是以真机运行的结果做评判标准，从而产生了很多无法预览，但能运行的界面。在很多项目中，一个原本可以一秒内看到的效果，最终需要漫长的过程（编译->运行->安装->显示）才能被我们看到。我不得不说这是反人类的，大大降低了Android程序员的开发效率，破坏了开发的心情（**我是很注重开发心情的**），让as强大的预览功能变得形同虚设。那么，下面就来说说如何让自己的UI可实时调试的方案和技巧。   
 
-### 三、小技巧  
+### 三、技巧  
 **3.1 少用merge标签**  
 很多文章都说为了避免层级加深请用merge标签，但是我这里却说少用它。原因有两点：
 1. merge标签会让布局中各个元素的关系错乱，无法准确的显示ui位置（预览时)。
@@ -63,7 +63,7 @@ tools标签不支持代码提示，而且自己的属性也不能提示，全是
     />
 ```
 ![](./4.png)  
-现在我们可以利用`tools`来预览item被放入的样子了，就像这样：
+现在我们可以利用`tools`来预览item被放入的样子了，就像这样：  
 ```XML
 <?xml version="1.0" encoding="utf-8"?>
 <ListView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -74,14 +74,14 @@ tools标签不支持代码提示，而且自己的属性也不能提示，全是
     tools:listitem="@layout/demo_item"
     />
 ```  
-![](./5.png)  
+![](./5.png)    
 是不是好了很多呢。   
-利用tools的这两个属性可以让我们不用盲写UI了，也可以给设计一个很直观的展示。
+利用tools的这两个属性可以让我们不用盲写UI了，也可以给设计一个很直观的展示。  
 
-**3.4 利用drawableXXX属性来做有图文的控件**  
+**3.4 利用drawableXXX属性来做有图文的控件**   
 textview和其子类都拥有`drawableLeft`、`drawableRight`等属性，通过这些属性可以让我们很方便的做出有图文控件。`drawablePadding`可以设置图文之间的间距，但可惜没有drawableLeftPadding之类的属性。
-比如我们要做一个两边有icon，文字居中的控件：
-![](./6.png)
+比如我们要做一个两边有icon，文字居中的控件：   
+![](./6.png)  
 ```XML
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -97,9 +97,9 @@ textview和其子类都拥有`drawableLeft`、`drawableRight`等属性，通过�
     android:textSize="20sp"
     />
 ```  
-这时如果想调整文字位置，只需要修改`gravity`的值即可。
-![](./7.png)
-我们常见的这种（文字+箭头）的控件就可以按照如下方式进行制作：
+这时如果想调整文字位置，只需要修改`gravity`的值即可。  
+![](./7.png)  
+我们常见的这种（文字+箭头）的控件就可以按照如下方式进行制作：  
 ```XML
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -116,8 +116,8 @@ textview和其子类都拥有`drawableLeft`、`drawableRight`等属性，通过�
     />
 ```  
 
-**3.5 利用space和layout_weight做占位**  
-有时候我们的需求很复杂，希望一个linearLayout中多个控件分散于两边，因为linearLayout内部的控件只能按照顺序依次排列，想要完成这个效果要用到`space`了。
+**3.5 利用space和layout_weight做占位**    
+有时候我们的需求很复杂，希望一个linearLayout中多个控件分散于两边，因为linearLayout内部的控件只能按照顺序依次排列，想要完成这个效果要用到`space`了。  
 ```XML
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -149,10 +149,10 @@ textview和其子类都拥有`drawableLeft`、`drawableRight`等属性，通过�
         />
 
 </LinearLayout>
-```  
-![](./8.png)  
+```    
+![](./8.png)   
 
-再举个常见的例子：
+再举个常见的例子：  
 我们要做一个上面是viewpager，底部是tab栏的主页面。这种页面如果仅仅用linearLayout是没办法做的，但如果用了`layout_weight`就可以很方便的完成。
 ```XML
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -221,12 +221,12 @@ private void preview(Context context, TypedArray a) {
         preview(context, a);
     }
 ```  
-现在来看看效果吧：
-![](./tablayout.gif)  
+现在来看看效果吧：  
+![](./tablayout.gif)   
 这种修改原生控件支持预览的做法没什么高深的，大家可以用类似的思路去改造那些难以预览的控件。  
 
 
-**3.7 通过插件来进行动态预览**
+**3.7 通过插件来进行动态预览**  
 我们都知道as的布局预览只支持静态预览，我们不能对预览界面进行交互，这样就无法测试滑动效果和点击效果了。所以我找到了[jimu mirror][1]这个插件来支持动态预览。启动mirror后，它会在你的手机上安装一个apk，这个apk展示的就是你当前的布局页面，mirror会监听xml文件的改动，如果xml文件发生了变化，那么它就能立刻刷新布局。下面来展示下我是如何在它的支持下预览viewpager的。   
 1. 首先在viewpager中加入这段代码
 ```JAVA
@@ -292,7 +292,7 @@ private void preview(Context context, TypedArray a) {
 
     }
 ```  
-上面的工作是为xml中设置viewpager中页面的layout做支持，以达到预览的作用。
+上面的工作是为xml中设置viewpager中页面的layout做支持，以达到预览的作用。  
 2. 编写xml布局文件
 ```XML
     <kale.uidemo.ExViewPager
@@ -309,7 +309,7 @@ private void preview(Context context, TypedArray a) {
         />
 ```  
 
-最后运行插件即可看到效果：  
+最后运行插件即可看到效果：   
 ![](./viewpager.gif)   
 
 ### 四、快速预览插件  
@@ -325,7 +325,7 @@ jrebel和mirror的侧重点是不同的，它注重缩短应用整体的调试�
 总之，感谢大家阅读到最后，如果你有其他的UI调试技巧请指出，如果你觉得本文提出的技巧有用，那么请尝试。   
 祝愿大家，中秋快乐~
 
-示例代码下载：[][http://download.csdn.net/detail/shark0017/9142445]
+示例代码下载：[http://download.csdn.net/detail/shark0017/9142445](http://download.csdn.net/detail/shark0017/9142445)
 
 ### 作者  
 ![Jack Tony](./avatar.png)     
