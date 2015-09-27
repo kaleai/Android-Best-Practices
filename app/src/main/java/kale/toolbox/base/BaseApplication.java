@@ -1,6 +1,7 @@
 package kale.toolbox.base;
 
 
+import com.github.mmin18.layoutcast.LayoutCast;
 import com.orhanobut.logger.LogLevel;
 
 import android.app.Application;
@@ -29,6 +30,10 @@ public class BaseApplication extends Application {
         // 如果是强制显示log，那么无论在什么模式下都显示log
         if (BaseApplication.LOG) {
             L.init(">").setLogLevel(LogLevel.FULL);
+        }
+
+        if (BuildConfig.DEBUG) {
+            LayoutCast.init(this);
         }
     }
 }

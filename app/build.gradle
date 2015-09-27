@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+// This does not break the build when Android Studio is missing the JRebel for Android plugin.
+apply plugin: 'com.zeroturnaround.jrebel.android'
 apply plugin: 'com.android.databinding'
 apply plugin: 'me.tatarka.retrolambda'
 
@@ -18,18 +20,16 @@ android {
         release {
             keyAlias 'kale'
             keyPassword 'test123'
-            storeFile file('../test_sign.jks')
+            storeFile file('./test_sign.jks')
             storePassword 'test123'
         }
     }
 
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
-            pseudoLocalesEnabled true
         }
     }
 
@@ -50,4 +50,5 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':lib')
     compile 'com.android.support:appcompat-v7:23.0.1'
+    compile 'com.github.mmin18.layoutcast:library:1.+@aar'
 }

@@ -25,8 +25,8 @@ public abstract class ExFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public void setPrimaryItem(ViewGroup container, int position, Object object) {
-        mCurrentFragment = (Fragment) object;
         super.setPrimaryItem(container, position, object);
+        mCurrentFragment = (Fragment) object;
         position = position % getCount();
         if (mFragmentTagSArr.valueAt(position) == null) {
             mFragmentTagSArr.put(position, mCurrentFragment.getTag());
