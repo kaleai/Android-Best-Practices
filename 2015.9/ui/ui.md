@@ -15,7 +15,7 @@
 有很多初学者都听到前辈们说Android Studio（下文简称为as）的布局实时预览很强大，但是当我们真正使用as后就会发现很多界面在预览时是这样的：
 ![](./1.png)
 或者这样的：  
-![](./2.png)
+![](./2.png)  
 甚至是这样的：  
 ![](./3.png)  
 这时候谁再和我讲as可以让你实时地编写UI，我就要和谁拼命了。(┬＿┬)  
@@ -24,13 +24,14 @@
 ### 三、小技巧  
 **3.1 少用merge标签**  
 很多文章都说为了避免层级加深请用merge标签，但是我这里却说少用它。原因有两点：
-1. merge标签会让布局中各个元素的关系错乱，无法准确的显示ui位置。
-2. merge标签中会失去as自动的代码提示，让编写变得困难。  
-这两点对于实时的ui是极为致命的，所以尽量少用merge标签，或者先是用linearLayout等viewgroup做根布局，等编写完毕了后再用merge来代替。  
-目前是没什么其他的好的解决方案了，只能等官方改进idea和增加tools的功能吧。
+1. merge标签会让布局中各个元素的关系错乱，无法准确的显示ui位置（预览时)。
+2. 在merge标签中会失去as自动的代码提示功能，让编写变得困难。  
+这两点对于UI的实时预览是极为致命的，所以推荐先用linearLayout等viewgroup做根布局，等编写完毕了后再用merge来代替。我倒不是说merge标签不好，merge标签的设计思路是很棒的，我只是想指出其问题。可惜的是，这两个问题目前没什么其他的好的解决方案了，只能等官方改进IDE和增加tools的功能吧。  
+**【吐槽】**  
+一个很棒的merge标签被这两个因素弄的很别扭，真是令人伤心，和它同病相怜的还有tools这个命名空间。
 
 **3.2 多用tools的属性**  
-`xmlns:tools="http://schemas.android.com/tools"`是一个很重要也很好用的命名空间，它拥有`android：`中所有的属性，但它标识的属性仅仅在预览中有效，不会影响真正的运行结果。  
+`xmlns:tools="http://schemas.android.com/tools"`是一个很重要也是很好用的命名空间，它拥有`android：`中所有的属性，但它标识的属性仅仅在预览中有效，不会影响真正的运行结果。  
 举个例子：
 ```xml
     <TextView
@@ -50,7 +51,7 @@
 把第一行的`android`替换为`tools`这样既可以能在预览中看到效果，又不会影响代码实际运行的结果。因为在实际运行的时候被`tools`标记的属性是会被忽略的。你完全可以理解为它是一个测试环境，这个测试环境和真实环境是完全独立的，不会有任何影响。  
 
 **【吐槽】**  
-tools标签不支持代码提示，而且自己的属性也不能提示，全是靠自己记忆。这么多年了，google貌似一直没管它，这也印证了google程序员也是不爱预览布局的人。
+tools标签不支持代码提示，而且自己的属性也不能提示，全是靠自己记忆，或者先用android来代替，然后替换android为tools。这么长时间以来，google貌似一直没管它，这也印证了google程序员也是不怎么爱实时预览布局的人。
 
 **3.3 用tools来让listview支持实时预览**  
 在之前的代码中，我们总是这样写listview，然后脑补一下item放入的样子。  
@@ -61,8 +62,8 @@ tools标签不支持代码提示，而且自己的属性也不能提示，全是
     android:layout_height="match_parent"
     />
 ```
-![](./4.png)
-现在我们可以利用`tools`来虚拟一下item被放入的样子，就像这样：
+![](./4.png)  
+现在我们可以利用`tools`来预览item被放入的样子了，就像这样：
 ```XML
 <?xml version="1.0" encoding="utf-8"?>
 <ListView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -73,9 +74,9 @@ tools标签不支持代码提示，而且自己的属性也不能提示，全是
     tools:listitem="@layout/demo_item"
     />
 ```  
-![](./5.png)
+![](./5.png)  
 是不是好了很多呢。   
-利用tools的这两个属性可以让我们不用盲写ui了，也可以给设计一个很直观的展示。
+利用tools的这两个属性可以让我们不用盲写UI了，也可以给设计一个很直观的展示。
 
 **3.4 利用drawableXXX属性来做有图文的控件**  
 textview和其子类都拥有`drawableLeft`、`drawableRight`等属性，通过这些属性可以让我们很方便的做出有图文控件。`drawablePadding`可以设置图文之间的间距，但可惜没有drawableLeftPadding之类的属性。
@@ -96,9 +97,9 @@ textview和其子类都拥有`drawableLeft`、`drawableRight`等属性，通过�
     android:textSize="20sp"
     />
 ```  
-如果想调整文字位置，只需要修改`gravity`的值即可。
+这时如果想调整文字位置，只需要修改`gravity`的值即可。
 ![](./7.png)
-我们常见的这种文字+箭头的控件就可以按照如下方式进行制作：
+我们常见的这种（文字+箭头）的控件就可以按照如下方式进行制作：
 ```XML
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -116,7 +117,7 @@ textview和其子类都拥有`drawableLeft`、`drawableRight`等属性，通过�
 ```  
 
 **3.5 利用space和layout_weight做占位**  
-有时候我们的需求很复杂，希望一个linearLayout中多个控件分散于两边，因为linearLayout不是相对布局，所以内部的控件只能按照顺序依次排列，想要完成这个效果就必须用到`space`了。
+有时候我们的需求很复杂，希望一个linearLayout中多个控件分散于两边，因为linearLayout内部的控件只能按照顺序依次排列，想要完成这个效果要用到`space`了。
 ```XML
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -184,8 +185,8 @@ textview和其子类都拥有`drawableLeft`、`drawableRight`等属性，通过�
 ```  
 ![](./9.png)  
 
-**3.6 修改控件来支持实时预览**   
-上面也说到了，很多Android的原生控件感觉都没为实时预览做优化，更不要说第三方的了。在最近的项目中我就遇到了用tabLayout做主界面tab切换的需求。但是google设计的tablayout的耦合性太高了，它依赖于一个viewpager，而viewpager又依赖于adapter，adapter由依赖于数据。所以完全没办法独立的调试一个tablayout。因此，我修改了它的代码让其支持布局的实时预览，降低其与其他控件的耦合性。主要就是加入了下面这段代码：
+**3.6 修改原生控件来支持实时预览**   
+上面也说到了，很多Android的原生控件都没为实时预览做优化，更不要说第三方的了。在最近的项目中我就遇到了用tabLayout做主界面tab栏的需求。但是google设计的tablayout的耦合性太高了，它依赖于一个viewpager，而viewpager又依赖于adapter，adapter又依赖于数据。所以完全没办法独立调试一个tablayout的样子。因此，我修改了它的代码，让其支持了布局的实时预览。主要就是加入了下面这段代码：
 ```JAVA
 private void preview(Context context, TypedArray a) {
         final String tabStrArr = a.getString(R.styleable.ExTabLayout_tools_tabStrArray);
@@ -220,14 +221,14 @@ private void preview(Context context, TypedArray a) {
         preview(context, a);
     }
 ```  
-全部代码请参考文末的代码示例，现在来看看效果吧：
+现在来看看效果吧：
 ![](./tablayout.gif)  
+这种修改原生控件支持预览的做法没什么高深的，大家可以用类似的思路去改造那些难以预览的控件。  
 
 
 **3.7 通过插件来进行动态预览**
-我们都知道as的布局预览只支持静态预览，我们没办法对预览界面进行交互，这样就没办法测试滑动效果和点击效果了，这样很不好。所以我找到了[jimu mirror][1]这个插件来支持动态预览。启动mirror后，它会在你的手机上安装一个apk，这个apk展示的就是你当前的布局页面，mirror会监听xml文件的改动，如果xml文件发生了变化，那么它就能立刻刷新布局。   
-下面来展示下如何在它的支持下预览viewpager。  
-1. 首先修改原本的viewpager
+我们都知道as的布局预览只支持静态预览，我们不能对预览界面进行交互，这样就无法测试滑动效果和点击效果了。所以我找到了[jimu mirror][1]这个插件来支持动态预览。启动mirror后，它会在你的手机上安装一个apk，这个apk展示的就是你当前的布局页面，mirror会监听xml文件的改动，如果xml文件发生了变化，那么它就能立刻刷新布局。下面来展示下我是如何在它的支持下预览viewpager的。   
+1. 首先在viewpager中加入这段代码
 ```JAVA
     private void preview(Context context, AttributeSet attrs) {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ExViewPager);
@@ -291,7 +292,7 @@ private void preview(Context context, TypedArray a) {
 
     }
 ```  
-上面的工作是支持了布局中设置viewpager中页面的layout，以达到预览的作用。
+上面的工作是为xml中设置viewpager中页面的layout做支持，以达到预览的作用。
 2. 编写xml布局文件
 ```XML
     <kale.uidemo.ExViewPager
@@ -309,20 +310,22 @@ private void preview(Context context, TypedArray a) {
 ```  
 
 最后运行插件即可看到效果：  
-![](./viewpager.gif)  
+![](./viewpager.gif)   
 
 ### 四、快速预览插件  
 ![](./10.png)  
-上文提到了利用jimu mirror来做UI的实时预览，更多的预览技巧可以去他们的[网站][2]进行浏览。mirror做的是实时替换静态的xml文件，让开发者可以在真机中看到UI界面。感兴趣的朋友可以去使用体验版本，我在体验后感觉到了它的强大和便捷，因为体验就几十天，所以我不得不成为了付费用户。其中最令人喜爱的是，他支持`tools`标签的属性并且支持力度强于as的实时预览器。  
+上文提到了利用jimu mirror来做UI的实时预览，更多的预览技巧可以去他们的[网站][2]进行浏览。mirror做的是实时替换静态的xml文件，让开发者可以在真机中看到UI界面，感兴趣的朋友可以去试用体验版本的mirror。我在体验后感受到了它的强大和便捷，因为体验就几十天，所以我不得不成为了付费用户。其中最令人喜爱的是，他支持`tools`标签的属性并且支持力度强于as的实时预览器。   
+
 ![](./11.png)  
-于jimu mirror类似的，还有[jrebel][3]，这个东西更加强大了，它做的不仅仅是让ui界面实时刷新，它甚至做到了让你更改java代码后就能实时替换apk中的class文件，达到应用实时刷新，我感觉是采用了热替换技术。官网的介绍是：Skip build, install and run，因此它可以节约我们很多很多的时间，它的效果也是十分不错的。它和mirro的侧重点是不同的，它注重缩短应用整体的调试时间，走的仍旧是真机出结果的路线。而mirror目的是让开发者能实时预览UI，走的是UI独立测试的路线。  
-总体来说这两款插件都挺不错的，简直是给官方打脸啊。但因为jrebel太贵了，所以我还是推荐用mirror。
+与jimu mirror类似的，还有[jrebel][3]。这个东西更加强大，它做的不仅仅是让UI界面实时刷新，它甚至做到了让你更改java代码后就能实时替换apk中的类文件，达到应用实时刷新，我认为它是采用了热替换技术。官网的介绍是：Skip build, install and run，因此它可以节约我们很多很多的时间，它的效果也十分不错。  
+jrebel和mirror的侧重点是不同的，它注重缩短应用整体的调试时间，走的仍旧是真机出结果的路线。而mirror目的是让开发者能实时预览UI，走的是UI独立测试的路线。总体来说这两款插件都挺不错的，这简直是给官方打脸啊。但因为jrebel太贵了，所以我还是推荐大家用mirror。
 
 ### 五、总结  
-这篇文章确实挺长的，也花了很多功夫。我仍旧觉得官方在设计和优化IDE上程序员思维太重，给开发者带来的便利还是太少。`tools`标签一直没代码提示、官方的控件的可预览性不友好等问题也使得开发者很难快速进行UI的调试。在如今Android世界MVP/MVVM模式大行其道的今天，UI独立测试变得尤为重要，我不希望大家每次调试UI还得安装运行一遍apk，更加不希望看到as的实时预览变成鸡肋。    
-总之，感谢大家阅读到最后，如果你有其他的UI调试技巧请指出，如果你觉得本文提出的技巧有用，那么请多多尝试。
+这篇文章确实挺长的，也花了很多功夫。我仍旧觉得官方在设计和优化IDE上程序员思维太重，给开发者带来的便利还是太少。`tools`标签一直没代码提示、官方的控件的可预览性不友好等问题也使得开发者很难快速地进行UI调试。在如今Android世界MVP、MVVM等模式大行其道的今天，UI独立测试变得尤为重要，我不希望大家每次调试UI还得安装运行一遍apk，更加不希望看到as的实时预览功能变成鸡肋。    
+总之，感谢大家阅读到最后，如果你有其他的UI调试技巧请指出，如果你觉得本文提出的技巧有用，那么请尝试。   
+祝愿大家，中秋快乐~
 
-示例代码下载：[http://download.csdn.net/detail/shark0017/9142445][http://download.csdn.net/detail/shark0017/9142445]
+示例代码下载：[][http://download.csdn.net/detail/shark0017/9142445]
 
 ### 作者  
 ![Jack Tony](./avatar.png)     
