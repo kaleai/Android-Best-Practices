@@ -330,7 +330,7 @@ jrebel和mirror的侧重点是不同的，它注重缩短应用整体的调试�
 ### 作者  
 ![Jack Tony](./avatar.png)     
 
-developer_kale@.com  
+developer_kale@qq.com  
 @天之界线2010
 
   [1]: http://jimulabs.com/mirror-downloads/
