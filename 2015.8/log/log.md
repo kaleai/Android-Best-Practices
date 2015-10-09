@@ -231,7 +231,7 @@ Object对象：
 ### 作者  
 ![Jack Tony][14]     
 
-developer_kale@.com  
+developer_kale@qq.com  
 @天之界线2010
 
 
