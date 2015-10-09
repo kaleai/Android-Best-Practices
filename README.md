@@ -20,7 +20,7 @@ Android最佳实践示例
   
 ### Developer
 ![](https://avatars3.githubusercontent.com/u/9552155?v=3&s=460)  
-Jack Tony: <developer_kale@.com>  
+Jack Tony: <developer_kale@qq.com>  
 
 ### License
 
