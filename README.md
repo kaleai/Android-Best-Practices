@@ -11,7 +11,8 @@ Android最佳实践示例
 --- | --- | ---
 2015 | 08 | [Log最佳实践](https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.8/log/log.md)  
 2015 | 09 | [Java反射最佳实践](https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.9/reflect/reflect.md)
-     |    | [UI实时预览最佳实践](https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.9/ui/ui.md)
+     |    | [UI实时预览最佳实践](https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.9/ui/ui.md)  
+2015 | 10 | [Adapter优化方案探索](https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.10/adapter/adapter.md)
   
 ### 初衷  
 起笔写这个项目的原因很简单。面对世面上众多的第三方库，我们很难在短时间内知道什么是最好的。开源平台虽百家争鸣，但落实到开发者的项目中也免不了成王败寇的结局。Android的很多效果已经被人实现了一次又一次，我希望带给大家一些市面上最好的开源库或者解决方案，让大家能快速找到质量较好的第三方库。   
