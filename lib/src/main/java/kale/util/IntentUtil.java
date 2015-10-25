@@ -9,7 +9,19 @@ import android.content.Intent;
  */
 public class IntentUtil {
 
+    public static final String KEY_FIRST = "KEY_FIRST";
+
+    public static final String KEY_SECOND = "KEY_SECOND";
+
+    public static final String KEY_THIRD = "KEY_THIRD";
+
+    public static final String KEY_FOURTH = "KEY_FOURTH";
+
+    public static final String KEY_FIFTH = "KEY_FIFTH";
+
+    public static final String KEY_SIXTH = "KEY_SIXTH";
     
+
     /**
      * 判断intent和它的bundle是否为空
      */
@@ -24,6 +36,6 @@ public class IntentUtil {
             return (T) intent.getExtras().get(key);
         } else {
             throw new NullPointerException("Intent is null");
-        } 
+        }
     }
 }

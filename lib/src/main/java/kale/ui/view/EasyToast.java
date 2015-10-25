@@ -6,6 +6,8 @@ import android.os.Handler;
 import android.support.annotation.CheckResult;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
+import android.support.annotation.UiThread;
+import android.support.annotation.WorkerThread;
 import android.view.View;
 import android.widget.Toast;
 
@@ -106,47 +108,52 @@ public class EasyToast {
 
     //// ---------------------  封装的静态方法  --------------------- ////
 
-    
+
     /**
      * 短暂显示toast
      */
-    public static void showToast(Activity activity, @StringRes int msg) {
-        show(activity, activity.getString(msg), Toast.LENGTH_SHORT);
+    @UiThread
+    public static void showToast(Context context, @StringRes int msg) {
+        show(context, context.getString(msg), Toast.LENGTH_SHORT);
     }
 
     /**
      * 短暂显示toast
      */
-    public static void showToast(Activity activity, String msg) {
-        show(activity, msg, Toast.LENGTH_SHORT);
+    @UiThread
+    public static void showToast(Context context, String msg) {
+        show(context, msg, Toast.LENGTH_SHORT);
     }
 
     /**
      * 显示长时间的toast
      */
-    public static void showToastLong(Activity activity, @StringRes int msg) {
-        show(activity, activity.getString(msg), Toast.LENGTH_LONG);
+    @UiThread
+    public static void showToastLong(Context context, @StringRes int msg) {
+        show(context, context.getString(msg), Toast.LENGTH_LONG);
     }
 
     /**
      * 显示长时间的toast
      */
-    public static void showToastLong(Activity activity, String msg) {
-        show(activity, msg, Toast.LENGTH_LONG);
+    @UiThread
+    public static void showToastLong(Context context, String msg) {
+        show(context, msg, Toast.LENGTH_LONG);
     }
 
     /**
      * @param length @param length toast的显示的时间长度：{Toast.LENGTH_SHORT, Toast.LENGTH_LONG}
      */
-    private static void show(Activity activity, String msg, int length) {
-        Toast.makeText(activity, msg, length).show();
+    private static void show(Context context, String msg, int length) {
+        Toast.makeText(context, msg, length).show();
     }
 
     //////////////////////////// In other thread ////////////////////////////
-    
+
     /**
      * 当你在线程中显示短暂toast时，请使用这个方法
      */
+    @WorkerThread
     public static void showToastInThread(Activity activity, @StringRes int msg) {
         showInThread(activity, activity.getString(msg), Toast.LENGTH_SHORT);
     }
@@ -154,6 +161,7 @@ public class EasyToast {
     /**
      * 当你在线程中显示短暂toast时，请使用这个方法
      */
+    @WorkerThread
     public static void showToastInThread(Activity activity, @NonNull String msg) {
         showInThread(activity, msg, Toast.LENGTH_SHORT);
     }
@@ -161,6 +169,7 @@ public class EasyToast {
     /**
      * 当你在线程中显示长期toast时，请使用这个方法
      */
+    @WorkerThread
     public static void showToastLongInThread(Activity activity, @StringRes int msg) {
         showInThread(activity, activity.getString(msg), Toast.LENGTH_LONG);
     }
@@ -168,18 +177,20 @@ public class EasyToast {
     /**
      * 当你在线程中显示长期toast时，请使用这个方法
      */
+    @WorkerThread
     public static void showToastLongInThread(Activity activity, @NonNull String msg) {
-        showInThread(activity,msg, Toast.LENGTH_LONG);
+        showInThread(activity, msg, Toast.LENGTH_LONG);
     }
 
     /**
      * 当你在线程中使用toast时，请使用这个方法(可以控制显示多长时间)
      */
+    @WorkerThread
     private static void showInThread(final Activity activity, final String msg, final int length) {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                show(activity,msg, length);
+                show(activity, msg, length);
             }
         });
     }

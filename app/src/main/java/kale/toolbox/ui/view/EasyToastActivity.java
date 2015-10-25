@@ -7,7 +7,9 @@ import kale.toolbox.base.BaseActivity;
 import kale.toolbox.databinding.EasytoastActivityBinding;
 import kale.ui.view.EasyToast;
 
-import static kale.ui.view.EasyToast.*;
+import static kale.ui.view.EasyToast.showToast;
+import static kale.ui.view.EasyToast.showToastInThread;
+import static kale.ui.view.EasyToast.showToastLong;
 
 /**
  * @author Jack Tony
