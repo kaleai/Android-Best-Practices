@@ -8,14 +8,15 @@
 ### 一、背景   
 故事发生在一个月黑风高的夜晚，那时候我知道了android世界中的一个恐怖的存在————adapter。看着无数的精英们随意地使用这强大的武器，造就了很多美轮美奂的应用时，我就暗自发誓，我一定要获得这个利器！  
 通过自身不断的修行，我慢慢的发现，那些系统提供的adapter没太大作用，仅仅在我写demo时才会去图省事用一用（确实挺省事的）。而在实际的开发中，我一直都在用baseAdapter。正所谓万变不离其宗，有了baseAdapter后，我就拥有了七十二变化，杀得了白骨精，斗得过二郎神，完全可以搞定设计和产品提出的需求。  
-直到有一天，当我看到一个包含着四五种类型，有着不同交互的item的Adapter后，一种苍白的无力感紧紧的抓住了我，我没办法一下子了解其中的所有的逻辑，在上面进行优化和添加需求都很痛苦。在一团乱麻的代码中，任何优化方案和设计模式都变得没有意义，我只能一边吐槽一边在上面写着让其更加恶心和难以维护的代码。  
+直到有一天，当我看到一个包含着四五种类型，有着不同交互的item的Adapter后，一种苍白的无力感紧紧的抓住了我，我没办法一下子了解其中的所有的逻辑，在上面进行优化和添加需求都很痛苦。在一团乱麻的代码中，任何优化方案和设计模式都变得没有意义，我只能一边吐槽一边在上面写着让其更加恶心和难以维护的代码。   
+
 后来，当我教我的学弟适配器方面的内容时，我说出了上面的经历。之后他的话让我陷入了深深的沉思之中。  
-“adapter到底是view还是controler呢？”他说。  
-我沉默良久，却不能给出一个回答。  
-是啊，adapter这个概念看似简单，但却模糊不清，于是我开始寻找这个问题的答案。 终于在菩提树下沉思三天三夜后，得出了以下答案：
+“adapter到底是view还是controler呢？”他说。我沉默良久，却不能给出一个回答。  
+是啊，adapter这个概念看似简单，但却模糊不清，于是我开始寻找这个问题的答案。 终于在菩提树下沉思三天三夜后，得出了以下答案：  
 1. adapter既不是v也不是c  
 2. adapter就是一个数据和视图的绑定装置  
-3. 数据、视图、绑定器三者的代码不应该缠在一起  
+3. 数据、视图、绑定器三者的代码不应该缠在一起    
+
 思考过后，我就开始进行adapter的研究，希望最后完成一个库来的进行调用。  
 
 ### 二、需求  
@@ -37,8 +38,10 @@
 5. 如果item中文本过多，可以采用textview的预渲染方案  
 6. 如果发现item因为measure任务过重，而出现掉帧，则需要通过自定义view来优化此item。这种方案适用于，某个item在应用中频繁使用的情形。   
 
-### 三、解决方案   
-**1. 数据应不知道对adapter和view的存在**   
+### 三、解决方案    
+
+**1. 数据应不知道对adapter和view的存在**    
+
 view肯定需要知道设置给自己的数据是什么，adapter肯定要知道view和数据是什么，但数据应该对其他的东西完全不知情。  
 数据的傻瓜化的好处有很多，如果这么做了，我们甚至可以把网络层和解析的model放入java项目中，利用java工程的特性进行网络层快速的单元测试（这点在以后的文章中可能会涉及）。  
 在这次的说明中，我们建立这样一个超级简单的数据模型：
@@ -60,7 +63,8 @@ public class DemoModel {
 ```  
 它就是一个POJO，没有任何特别之处，它完全不知道其他对象的存在。
 
-**2. Adapter是内部类**  
+**2. Adapter是内部类**   
+
 回看我们之前写的代码，经常会把adapter中写入很多逻辑和判断的语句，现在如果想要让adapter变成一个仅仅用于与视图进行绑定的简单工具，那么它里面就不应该有不属于它的操作，它应该仅仅做到的是接收数据，然后绑定视图。因此，将其作为内部类是完全可行的，并且还会增加可读性。就像下面这样：
 ```JAVA
 listView.setAdapter(new CommonAdapter<DemoModel>(data) {
@@ -72,11 +76,12 @@ listView.setAdapter(new CommonAdapter<DemoModel>(data) {
 ```   
 **注意：** 
 
-    不要在onCreat或者初始化listview后直接设置adapter，adapter的初始化应该在得到数据之后。比如你的数据来自网络，你就应该在网络返回结果成功后再调用setAdapter。  
+>不要在onCreat或者初始化listview后直接设置adapter，adapter的初始化应该在得到数据之后。比如你的数据来自网络，你就应该在网络返回结果成功后再调用setAdapter。  
 
 这个通用的适配器接收了data，然后在getItemView的时候返回想要的item对象。需要说明的是，data的类型是`list<T>`，用来适应各种类型的数据源。这里的item对象，等会咱们再谈，先来看看如果是多种类型item该咋办。  
 
-**3. Adapter能支持多种item类型**  
+**3. Adapter能支持多种item类型**   
+
 ```JAVA
 listView.setAdapter(new CommonAdapter<DemoModel>(data, 3) {
 
@@ -105,9 +110,10 @@ listView.setAdapter(new CommonAdapter<DemoModel>(data, 3) {
 这时，就算来了新的需求，让你多支持一个item类型，你只需要在switch-case语句块中新增一个case就行，简单且安全。  
 **注意：**
 
-    在做这样的操作时，请务必写上`default`这个条件，以免出现不可预知的错误。毕竟来自服务器的数据也是不能完全相信的。   
+>在做这样的操作时，请务必写上`default`这个条件，以免出现不可预知的错误。毕竟来自服务器的数据也是不能完全相信的。   
     
-**4. Adapter能对自身内部的item进行自动复用**  
+**4. Adapter能对自身内部的item进行自动复用**    
+
 我们之前对adapter的优化经常是需要在getView中判断convertView是否为null，如果不为空就不new出新的view，这样来实现item复用。但我们的目的是希望这个库能帮我们自动化的做到这点，于是赶快看看上面已经出现多次的`AdapterItem`是个什么东西吧。  
 ```JAVA
 /**
@@ -144,7 +150,8 @@ public interface AdapterItem<T> {
 }  
 ```  
 看到这我不禁失望了起来，这是什么鬼！一个接口，没啥东西的接口。当我冷静下来，开始思考这个接口有什么用，反正我不知道它和复用item有什么关系。  
-分析下来我发现这个接口就像一个表格：  
+分析下来我发现这个接口就像一个表格：   
+
 |时机|人话|做的工作|
 |-----|----|
 |getLayoutResId|你这个item的布局文件是什么| 返回一个R.layout.xxx|
@@ -190,7 +197,8 @@ public View getView(int position, View convertView, ViewGroup parent) {
 3. 如果遇到复杂的库，比如网络和图片库。全部知道其原理是很难的，也需要成本，而你自己写也是不现实的，所以需要挑选很有名气的库来用。这样即使遇到了问题，也会有很多资料可以搜到   
 4. 不要抵触国人的库，国人的库更加接地气，说不定还更好，还可以更加方便的提出issue。我就觉得AndroidEventBus就写的挺好的！  
 
-**5. Adapter中对findviewById方法应该有优化，类似ViewHolder**   
+**5. Adapter中对findviewById方法应该有优化，类似ViewHolder**     
+
 这点在第四点中我已经进行了详细的说明和分析，我们只需要在bindViews中写findview方法即可让这个库自动实现优化工作。我在实际使用中结合了databinding这个库进行编写，一行代码解决问题：
 ```JAVA
     private DemoItemImageBinding b;
@@ -212,7 +220,8 @@ public View getView(int position, View convertView, ViewGroup parent) {
 我强烈建议使用dataBinding做视图的绑定操作，因为它自动化程度很高，再也不用看到findviewById这种方法了。而且当你更改了view的id或者类型，它也会自动识别，大大增加了可维护性。   
 目前我看到它对于mvvm的支持力度在idea层面遇到了无法进行代码提示的问题，所以我不建议将其用于视图绑定之外的数据绑定上。  
 
-**6. item能独立的处理自身的逻辑和点击事件，自身应具有极高的独立性**  
+**6. item能独立的处理自身的逻辑和点击事件，自身应具有极高的独立性**    
+
 举个例子，你的item就是一个textView：
 ```XML
 <?xml version="1.0" encoding="utf-8"?>
@@ -254,10 +263,11 @@ public class TextItem implements AdapterItem<DemoModel> {
 这个item对于被哪个适配器绑定是不知情的，各个数据的更新应该全部由自己完成。现在，你可以将它放入不同的界面，只需要给他同样的数据模型即可。当然，我知道这种一个item被多个页面用的情形中还可以做更多的优化，比如在RecyclerView设置全局的缓存池等等。  
 **注意：**  
 
-    我强烈建议不要用itemOnListener做点击的判断，而是在每个item中做判断。这样的好处就是item自身知道自己的所有操作，而listview仅仅做个容器。现在RecyclerView的设计思路也是如此的，让item独立性增加，也更加符合我们现实生活中的逻辑。   
-    我们生活中的认知是这样的：这个列表中支持普通的微博和官方推荐的广告，如果用户点了普通的微博则进入微博，如果点了广告就进入广告页面。所以点击的是微博还是广告应该是自己判断的，而不是交给容器来做。  
+>我强烈建议不要用itemOnListener做点击的判断，而是在每个item中做判断。这样的好处就是item自身知道自己的所有操作，而listview仅仅做个容器。现在RecyclerView的设计思路也是如此的，让item独立性增加，也更加符合我们现实生活中的逻辑。     
+我们生活中的认知是这样的：这个列表中支持普通的微博和官方推荐的广告，如果用户点了普通的微博则进入微博，如果点了广告就进入广告页面。所以点击的是微博还是广告应该是自己判断的，而不是交给容器来做。  
     
-**7. item自身的setListener应仅设置一次，不用在getView时重复建立**  
+**7. item自身的setListener应仅设置一次，不用在getView时重复建立**   
+
 上面也说到了，我们之前会图省事在listview的getView中随便写监听器，以至于出现了监听器爆炸的现象。现在，我们在setViews中写上监听器，这样就只建立需要的监听器对象，降低资源的浪费。  
 ```JAVA
 /**
@@ -305,9 +315,9 @@ public class ButtonItem implements AdapterItem<DemoModel> {
 
 }  
 ```  
-**8. Adapter应该提供item的局部刷新功能**  
-这个功能在recyclerView中就已经提供了，我就不废话了。推荐直接使用recyclerView来做列表。在react-native的源码中我也看到了对recyclerView的支持。  
-网上流传比较多的是用下面的代码做listview的单条刷新：
+**8. Adapter应该提供item的局部刷新功能**    
+
+这个功能在recyclerView中就已经提供了，我就不废话了。推荐直接使用recyclerView来做列表。在react-native的源码中我也看到了对recyclerView的支持。网上流传比较多的是用下面的代码做listview的单条刷新：
 ```JAVA
 private void updateSingleRow(ListView listView, long id) {  
   
@@ -324,7 +334,8 @@ private void updateSingleRow(ListView listView, long id) {
 ```  
 其实就是手动调用了对应position的item的getView方法，个人觉得不是很好，为何不直接使用recyclerView呢？  
 
-**9. Listview的adapter应该在稍微修改后支持recyclerView**
+**9. Listview的adapter应该在稍微修改后支持recyclerView**   
+
 如今recyclerView大有接替listview的趋势，我们自然要关心如何从的listview的适配器切到recyclerView的适配器。要知道listview的适配器和recyclerView的适配器的写法是不同的。  
 上面给出的例子都是listview的写法，我在这里在引用一下：
 ```JAVA
@@ -350,10 +361,12 @@ recyclerView.setAdapter(new CommonRcvAdapter<DemoModel>(data) {
 
 ### 四、解决和Adapter不太相关的需求
 
-**1. 如果item中要加载图片，请在线程中加载，加载好了后切回主线程显示**  
+**1. 如果item中要加载图片，请在线程中加载，加载好了后切回主线程显示**    
+
 有了RxAndroid这都不是事，当然一般的图片框架也会做这点。如果你使用的图片框架中没有做这样的处理，请务必加上！ 
 
-**2. 在快速滑动时不加载网络图片或停止gif图的播放**  
+**2. 在快速滑动时不加载网络图片或停止gif图的播放**    
+
 这个在QQ空间和微信朋友圈详情页中很常见，这个工作我仍旧希望交给图片加载框架做，而不是手动处理。因为手动处理对程序员的懒惰程度和知识水平有要求，所以还是交给库做放心。如果你的库没有做这样的处理，可以参考[Android-Universal-Image-Loader][3]中的实现方法。  
 核心代码：
 ```JAVA
@@ -379,7 +392,8 @@ recyclerView.setAdapter(new CommonRcvAdapter<DemoModel>(data) {
 		}
 	}
 ```  
-**3. 判断item已经显示的数据和需要显示的新数据是否不同，如果不同就更新，否则不更新**  
+**3. 判断item已有的数据和新数据是否不同**    
+
 如果是加载图片，我还是希望你去看看你用的图片框架有没有做这样的优化，如果有就请放心，如果没有，那么请自己在框架中配置或者写工具类。  
 这里的情况不仅仅适用于图片也适用于其他的数据，如果你的item中文字很多，经常有几百个文字。那么也可以先判断要显示的文字和textview中已经有的文字是否一致，如果不一致再调用setText方法。下面是一个例子：
 ```JAVA
@@ -404,7 +418,8 @@ recyclerView.setAdapter(new CommonRcvAdapter<DemoModel>(data) {
         }
     }
 ```  
-**4. 如果一个item过于复杂，可以将其拆分成多个小的item**  
+**4. 如果一个item过于复杂，可以将其拆分成多个小的item**   
+
 关于这点是facebook提出的优化技巧，后来我了解到ios本身就是这么做的。我会找机会了解一下ios的实现机制，然后看看能不能放入这个库里面，方便android们使用。  
 ![](./item.png)
 如图所示，这个item很复杂，而且很大。当你的item占据三分之二屏幕的时候就可以考虑这样的优化方案了。右图说明了将一个整体的item变成多个小item的效果，在这种拆分后，你会发现原来拆分后的小的item可能在别的界面也用到了，可以在写其他需求的时候也用一下，这就出现了item模块化的思想，总之是一个挺有意思的优化思路。  
@@ -418,7 +433,8 @@ Instagram（现已在facebook旗下）分享了他们是如何优化他们的Tex
 ![](./staticLayout.png)
 > 这里测试的机器是MX3，左侧是直接使用StaticLayout的方案，右侧是系统的默认方案，Y轴是FPS，可以看出来，使用优化之后的方案，帧率提升了许多。  
 
-**6. 通过自定义viewGroup来优化item，从而减少重复的measure**   
+**6. 通过自定义viewGroup来优化item，从而减少重复的measure**    
+
 ![](./viewgroup.png)
 facebook的工程师讲解了他们对上面这个布局的优化策略，内容翔实，是个很好的分享。中文翻译版本：[听FackBook工程师讲Custom ViewGroups][6]  
 
@@ -430,7 +446,10 @@ facebook的工程师讲解了他们对上面这个布局的优化策略，内容
 本文的完成离不开朋友们的支持和帮助，感谢：@MingleArch、豪哥的批评和建议。
 
 示例代码下载：https://github.com/tianzhijiexian/CommonAdapter
-
+  
+  
+     
+     
 ### 作者  
 ![Jack Tony](./avatar.png)     
 
