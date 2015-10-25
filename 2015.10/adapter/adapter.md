@@ -48,9 +48,9 @@
 
 **1. 数据应不知道对adapter和view的存在**    
 
-view肯定需要知道设置给自己的数据是什么，adapter肯定要知道view和数据是什么，但数据应该对其他的东西完全不知情。  
-数据的傻瓜化的好处有很多，如果这么做了，我们甚至可以把网络层和解析的model放入java项目中，利用java工程的特性进行网络层快速的单元测试（这点在以后的文章中可能会涉及）。  
-在这次的说明中，我们建立这样一个超级简单的数据模型：
+view肯定需要知道设置给自己的数据是什么，adapter肯定要知道view和数据是什么，但数据应该对其他的东西完全不知情。   
+
+数据的傻瓜化的好处有很多，如果这么做了，我们甚至可以把网络层和解析的model放入java项目中，利用java工程的特性进行网络层快速的单元测试（这点在以后的文章中可能会涉及）。在这次的说明中，我们建立这样一个超级简单的数据模型：
 ```JAVA
 public class DemoModel {
 
@@ -162,12 +162,13 @@ public interface AdapterItem<T> {
 
 它就像一个表格：   
 
-|时机|人话|做的工作|
-|-----|----|
-|getLayoutResId|你这个item的布局文件是什么| 返回一个R.layout.xxx|
-|bindViews|在这里做findviewById的工作吧| btn = findViewById(R.id.xx)|
-|setViews|在这里初始化view各个参数吧| setcolor ,setOnClickListener...|
-|updateViews|数据更新时会调用（类似getView）|button.setText(model.text)|
+时机|人话|做的工作
+--- | --- | ---
+getLayoutResId|你这个item的布局文件是什么| 返回一个R.layout.xxx
+onBindViews|在这里做findviewById的工作吧| btn = findViewById(R.id.xx)
+onSetViews|在这里初始化view各个参数吧| setcolor ,setOnClickListener...
+onUpdateViews|数据更新时会调用（类似getView）|button.setText(model.text)   
+
 其实这里就是适配器中view的几个过程，首先初始化布局文件，然后绑定布局文件中的各个view，接着进行各个view的初始化操作，然后在数据更新时在updateViews中进行更新数据的操作。  
 分析完毕后，我去源码里面翻了一下，终于发现了这个库对item复用的优化：
 ```JAVA
