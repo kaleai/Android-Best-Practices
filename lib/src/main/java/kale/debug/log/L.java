@@ -98,12 +98,18 @@ public class L {
      * @return 当前的类名(simpleName)
      */
     private static String getClassName() {
+
         String result;
         StackTraceElement thisMethodStack = (new Exception()).getStackTrace()[2];
         result = thisMethodStack.getClassName();
         int lastIndex = result.lastIndexOf(".");
         result = result.substring(lastIndex + 1, result.length());
-        return result;
+
+        //如果调用位置在匿名内部类的话，就会产生类似于 MainActivity$3 这样的TAG
+        //可以把$后面的部分去掉
+        int i = result.indexOf("$");
+
+        return i == -1 ? result : result.substring(0, i);
     }
     
 }
