@@ -59,7 +59,7 @@ L.d("This is a debug log");
      */
     private static String getClassName() {
         String result;
-        StackTraceElement thisMethodStack = (new Exception()).getStackTrace()[2];
+        StackTraceElement thisMethodStack = (new Exception()).getStackTrace()[1];
         result = thisMethodStack.getClassName();
         int lastIndex = result.lastIndexOf(".");
         result = result.substring(lastIndex + 1, result.length());
