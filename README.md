@@ -9,7 +9,7 @@ Android最佳实践示例
 
 年 | 月 | 文章
 --- | --- | ---
-2015 | 08 | [Log最佳实践](https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.8/log/log.md)  
+2015 | 08 | [Log最佳实践](https://www.zybuluo.com/shark0017/note/163330)  
 2015 | 09 | [Java反射最佳实践](https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.9/reflect/reflect.md)
      |    | [UI实时预览最佳实践](https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.9/ui/ui.md)  
 2015 | 10 | [Adapter优化方案探索](https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.10/adapter/adapter.md)
