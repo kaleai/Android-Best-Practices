@@ -1,4 +1,6 @@
 # Android-Best-Practices
+
+[![Join the chat at https://gitter.im/tianzhijiexian/Android-Best-Practices](https://badges.gitter.im/tianzhijiexian/Android-Best-Practices.svg)](https://gitter.im/tianzhijiexian/Android-Best-Practices?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Android最佳实践示例  
 
 如果你的项目中用到了本项目中给出的工具或者是类，那么请通过邮件或者是微博等方式告知。我很希望收到大家的反馈，这样也是对我的一种支持。做事不易，尽力而为。  
