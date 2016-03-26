@@ -1,5 +1,5 @@
 # Android-Best-Practices
-Android最佳实践示例  
+
 [![Join the chat at https://gitter.im/orhanobut/logger](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/tianzhijiexian/Android-Best-Practices?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 <img align="right" src='https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/images/logo.png' width='130' height='130'/>
