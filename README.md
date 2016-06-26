@@ -1,7 +1,6 @@
 # Android-Best-Practices
 
 [![Join the chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/tianzhijiexian/Android-Best-Practices?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Issue Stats](http://issuestats.com/github/tianzhijiexian/Android-Best-Practices/badge/pr?style=flat)](http://issuestats.com/github/tianzhijiexian/Android-Best-Practices) 
 [![Issue Stats](http://issuestats.com/github/tianzhijiexian/Android-Best-Practices/badge/issue?style=flat)](http://issuestats.com/github/tianzhijiexian/Android-Best-Practices)
 
 <img align="right" src='https://raw.githubusercontent.com/tianzhijiexian/Android-Best-Practices/master/images/logo.png' width='130' height='130'/>
