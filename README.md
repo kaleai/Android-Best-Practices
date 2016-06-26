@@ -19,7 +19,8 @@
      |    | [UI实时预览最佳实践](https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.9/ui/ui.md)  
      | 10 | [Adapter最佳实践](https://www.zybuluo.com/shark0017/note/202443) | https://github.com/tianzhijiexian/CommonAdapter  
 2016 | 04 | [Selector最佳实践](https://www.zybuluo.com/shark0017/note/333443) | https://github.com/tianzhijiexian/SelectorInjection  
-     | 05 | [开发第三方库最佳实践](http://www.jianshu.com/p/0aacd419cb7e)|
+     | 05 | [开发第三方库最佳实践](http://www.jianshu.com/p/0aacd419cb7e) |
+     | 06 | [集成第三方推送最佳实践](http://www.jianshu.com/p/d650d02a1c7a) |
 
 ### 初衷  
 起笔写这个项目的原因很简单，面对世面上众多的第三方库，我们很难在短时间内知道什么是最好的。开源平台虽百家争鸣，但落实到开发者的项目中也终究是成王败寇的结局。Android的很多效果已经被人实现了一次又一次，我希望带给大家一些市面上最好的开源库或解决方案，让大家能快速找到质量最好的第三方库。   
