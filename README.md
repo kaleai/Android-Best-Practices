@@ -13,7 +13,7 @@
 
 年 | 月 | 文章 | 开源库
 --- | --- | --- | ---
-2015 | 08 | [Log最佳实践](https://www.zybuluo.com/shark0017/note/163330)  | https://github.com/tianzhijiexian/logger  
+2015 | 08 | [Log最佳实践](http://www.jianshu.com/p/586c27e77e81)  | https://github.com/tianzhijiexian/logger  
      | 09 | [Java反射最佳实践](https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.9/reflect/reflect.md) | https://github.com/jOOQ/jOOR   
      |    | [UI实时预览最佳实践](https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.9/ui/ui.md)  
      | 10 | [Adapter最佳实践](https://www.zybuluo.com/shark0017/note/202443) | https://github.com/tianzhijiexian/CommonAdapter  
