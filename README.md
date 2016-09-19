@@ -22,6 +22,7 @@
      | 06 | [集成第三方推送最佳实践](http://www.jianshu.com/p/d650d02a1c7a) |
      | 07 | [Android打包提速实践](http://www.jianshu.com/p/e456a5ac8613) | https://github.com/seven456/MultiChannelPackageTool
      | 08 | [DataBinding最佳实践](http://www.jianshu.com/p/1fcda521fcda) | https://github.com/tianzhijiexian/DBinding
+     | 09 | [App瘦身最佳实践](http://www.jianshu.com/p/8f14679809b3) | https://github.com/mogujie/TinyPIC_Gradle_Plugin
 
 ### 初衷  
 起笔写这个项目的原因很简单，面对世面上众多的第三方库，我们很难在短时间内知道什么是最好的。开源平台虽百家争鸣，但落实到开发者的项目中也终究是成王败寇的结局。我希望带给大家一些市面上最好的开源库或解决方案，让大家能快速找到质量最好的第三方库。   
