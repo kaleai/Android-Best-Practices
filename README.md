@@ -5,7 +5,7 @@
 
 <img align="right" src='https://raw.githubusercontent.com/tianzhijiexian/Android-Best-Practices/master/images/logo.png' width='130' height='130'/>
 
-如果你的项目中用到了本项目中给出的工具或者是类，那么请通过邮件或者是微博等方式告知。我很希望收到大家的反馈，这样也是对我的一种支持。做事不易，尽力而为。  
+如果你也想参与或者是对文中内容有所补充，可以通过评论或邮件的方式进行告知，我很希望可以和大家一同完善本项目。  
 
 起笔时间2015年8月30日（晚）  
 
