@@ -20,7 +20,7 @@
 2016 | 04 | [Selector最佳实践](https://www.zybuluo.com/shark0017/note/333443) | https://github.com/tianzhijiexian/SelectorInjection  
      | 05 | [开发第三方库最佳实践](http://www.jianshu.com/p/0aacd419cb7e) | https://jitpack.io/
      | 06 | [集成第三方推送最佳实践](http://www.jianshu.com/p/d650d02a1c7a) |
-     | 07 | [Android打包提速实践](http://www.jianshu.com/p/e456a5ac8613) | https://github.com/seven456/MultiChannelPackageTool
+     | 07 | [打包提速最佳实践](http://gold.xitu.io/post/5831301a0ce463006c044c77) | https://github.com/seven456/MultiChannelPackageTool
      | 08 | [DataBinding最佳实践](http://www.jianshu.com/p/1fcda521fcda) | https://github.com/tianzhijiexian/DBinding
      | 09 | [App瘦身最佳实践](http://www.jianshu.com/p/8f14679809b3) | https://github.com/mogujie/TinyPIC_Gradle_Plugin
      | 10 | [Gradle配置最佳实践](http://gold.xitu.io/post/582d606767f3560063320b21) |
