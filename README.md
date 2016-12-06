@@ -24,6 +24,7 @@
      | 08 | [DataBinding最佳实践](http://www.jianshu.com/p/1fcda521fcda) | https://github.com/tianzhijiexian/DBinding
      | 09 | [App瘦身最佳实践](http://www.jianshu.com/p/8f14679809b3) | https://github.com/mogujie/TinyPIC_Gradle_Plugin
      | 10 | [Gradle配置最佳实践](http://gold.xitu.io/post/582d606767f3560063320b21) |
+
      
 ### 初衷  
 起笔写这个项目的原因很简单，面对世面上众多的第三方库，我们很难在短时间内知道什么是最好的。开源平台虽百家争鸣，但落实到开发者的项目中也终究是成王败寇的结局。我希望带给大家一些市面上最好的开源库或解决方案，让大家能快速找到质量最好的第三方库。   
@@ -35,10 +36,18 @@
 2. 关于文章的放置地点，我选择了第三方的平台，没有放在github上。因为git的东西每次都要产生一个commit，不够随意。  
 3. 老的文章会随着推荐的库的更新而更新，如果老的文章更新了，我“有可能”会在微博上发布信息。
 
-### 随笔
-学生时期自己有着无穷的自信心，毕业后发现必须要用实力来面对现实。于是，凭空而来的自信和踏实稳妥的实力都塑造了我。虽然不能像以前那样穷尽全力去帮助别人，甚至改变世界，但我仍能够不断地坚持让自己多帮助别人一点，即使是一点点。     ———— 在现实中苟延残喘的理想主义者
+### 尾记
+学生时期自己有着无穷的自信，毕业后发现必须要用实力来面对现实。现在我虽然不能像以前那样穷尽全力去帮助别人，也不能改变世界，但我希望自己仍能够不断地坚持一些事情，即使是一点点微小的工作。   ———— 在现实中苟延残喘的理想主义者
 
-### Developer  
+### 推荐文章
+
+类别 | 文章  
+--- | ---  
+debug | [你所不知道的Android Studio调试技巧](http://www.jianshu.com/p/011eb88f4e0d)  
+keymap | [Android Studio 小技巧/快捷键 合集](http://jaeger.itscoder.com/android/2016/02/14/android-studio-tips.html)  
+
+
+### Developer   
 
 ![](https://avatars3.githubusercontent.com/u/9552155?v=3&s=460)   
 
