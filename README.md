@@ -25,7 +25,7 @@
      | 09 | [App瘦身最佳实践](http://www.jianshu.com/p/8f14679809b3) | https://github.com/mogujie/TinyPIC_Gradle_Plugin
      | 10 | [Gradle配置最佳实践](http://gold.xitu.io/post/582d606767f3560063320b21) |
 
-     
+
 ### 初衷  
 起笔写这个项目的原因很简单，面对世面上众多的第三方库，我们很难在短时间内知道什么是最好的。开源平台虽百家争鸣，但落实到开发者的项目中也终究是成王败寇的结局。我希望带给大家一些市面上最好的开源库或解决方案，让大家能快速找到质量最好的第三方库。   
 
@@ -47,11 +47,11 @@ debug | [你所不知道的Android Studio调试技巧](http://www.jianshu.com/p/
 keymap | [Android Studio 小技巧/快捷键 合集](http://jaeger.itscoder.com/android/2016/02/14/android-studio-tips.html)  
 
 
-### Developer   
+### Developer  
 
 ![](https://avatars3.githubusercontent.com/u/9552155?v=3&s=460)   
 
-Jack Tony: <developer_kale@foxmail.com>  
+Jack Tony: <developer-kale@foxmail.com>  
 
 ### License
 
@@ -68,3 +68,8 @@ Jack Tony: <developer_kale@foxmail.com>
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+
+---
+**捐助此项目**  
+
+![](https://raw.githubusercontent.com/tianzhijiexian/Android-Best-Practices/master/images/pay.png?v=3&s=460)
