@@ -11,19 +11,19 @@
 
 ### 目录   
 
-年 | 月 | 文章 | 开源库
---- | --- | --- | ---
-2015 | 08 | [Log最佳实践](http://www.jianshu.com/p/586c27e77e81)  | https://github.com/tianzhijiexian/logger  
-     | 09 | [Java反射最佳实践](https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.9/reflect/reflect.md) | https://github.com/jOOQ/jOOR   
-     |    | [UI实时预览最佳实践](https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.9/ui/ui.md) | http://www.jimumirror.com/
-     | 10 | [Adapter最佳实践](https://www.zybuluo.com/shark0017/note/202443) | https://github.com/tianzhijiexian/CommonAdapter  
-2016 | 04 | [Selector最佳实践](https://www.zybuluo.com/shark0017/note/333443) | https://github.com/tianzhijiexian/SelectorInjection  
-     | 05 | [开发第三方库最佳实践](http://www.jianshu.com/p/0aacd419cb7e) | https://jitpack.io/
-     | 06 | [集成第三方推送最佳实践](http://www.jianshu.com/p/d650d02a1c7a) |
-     | 07 | [打包提速最佳实践](http://gold.xitu.io/post/5831301a0ce463006c044c77) | https://github.com/seven456/MultiChannelPackageTool
-     | 08 | [DataBinding最佳实践](http://www.jianshu.com/p/1fcda521fcda) | https://github.com/tianzhijiexian/DBinding
-     | 09 | [App瘦身最佳实践](http://www.jianshu.com/p/8f14679809b3) | https://github.com/mogujie/TinyPIC_Gradle_Plugin
-     | 10 | [Gradle配置最佳实践](http://gold.xitu.io/post/582d606767f3560063320b21) |
+年 | 月 | 文章 |
+--- | --- | --- |
+2015 | 08 | [Log最佳实践](https://gold.xitu.io/post/5848ba24b123db006601febf)
+     | 09 | [Java反射最佳实践](https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.9/reflect/reflect.md)
+     |    | [UI实时预览最佳实践](https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.9/ui/ui.md)
+     | 10 | [Adapter最佳实践](https://www.zybuluo.com/shark0017/note/202443)
+2016 | 04 | [Selector最佳实践](https://www.zybuluo.com/shark0017/note/333443)
+     | 05 | [开发第三方库最佳实践](http://www.jianshu.com/p/0aacd419cb7e)
+     | 06 | [集成第三方推送最佳实践](http://www.jianshu.com/p/d650d02a1c7a)
+     | 07 | [打包提速最佳实践](http://gold.xitu.io/post/5831301a0ce463006c044c77)
+     | 08 | [DataBinding最佳实践](http://www.jianshu.com/p/1fcda521fcda)
+     | 09 | [App瘦身最佳实践](http://www.jianshu.com/p/8f14679809b3)
+     | 10 | [Gradle配置最佳实践](http://gold.xitu.io/post/582d606767f3560063320b21)
 
 
 ### 初衷  
